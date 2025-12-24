@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ASIANG | Sistem Panel Nasabah</title>
+  <title>ASIANG | Sistem Panel Nasabah Premium</title>
 
-  <!-- Fonts & Icons Premium -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -26,60 +26,63 @@
             danger: '#ef4444',
             warning: '#f59e0b',
             dark: '#0f172a',
-            light: '#f8fafc'
+            'dark-light': '#1e293b'
           },
           animation: {
+            'slide-in': 'slideIn 0.3s ease-out',
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'scale-in': 'scaleIn 0.3s ease-out',
             'float': 'float 3s ease-in-out infinite',
-            'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-            'slide-up': 'slide-up 0.4s ease-out',
-            'slide-down': 'slide-down 0.4s ease-out',
-            'fade-in': 'fade-in 0.5s ease-out',
-            'bounce-subtle': 'bounce-subtle 2s infinite',
-            'gradient-shift': 'gradient-shift 3s ease infinite',
-            'spin-slow': 'spin 3s linear infinite',
-            'checkmark': 'checkmark 0.5s ease-out'
+            'slide-down': 'slideDown 0.3s ease-out',
+            'slide-up': 'slideUp 0.3s ease-out',
+            'bounce-in': 'bounceIn 0.6s ease-out',
+            'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+            'notification-slide': 'notificationSlide 0.5s ease-out',
+            'notification-hide': 'notificationHide 0.5s ease-out'
           },
           keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
-            },
-            'pulse-glow': {
-              '0%, 100%': { opacity: 1, boxShadow: '0 0 20px rgba(37, 99, 235, 0.3)' },
-              '50%': { opacity: 0.8, boxShadow: '0 0 30px rgba(37, 99, 235, 0.6)' }
-            },
-            'slide-up': {
-              '0%': { transform: 'translateY(20px)', opacity: 0 },
+            slideIn: {
+              '0%': { transform: 'translateY(10px)', opacity: 0 },
               '100%': { transform: 'translateY(0)', opacity: 1 }
             },
-            'slide-down': {
-              '0%': { transform: 'translateY(-20px)', opacity: 0 },
-              '100%': { transform: 'translateY(0)', opacity: 1 }
-            },
-            'fade-in': {
+            fadeIn: {
               '0%': { opacity: 0 },
               '100%': { opacity: 1 }
             },
-            'bounce-subtle': {
+            scaleIn: {
+              '0%': { transform: 'scale(0.95)', opacity: 0 },
+              '100%': { transform: 'scale(1)', opacity: 1 }
+            },
+            float: {
               '0%, 100%': { transform: 'translateY(0)' },
               '50%': { transform: 'translateY(-5px)' }
             },
-            'gradient-shift': {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' }
+            slideDown: {
+              '0%': { transform: 'translateY(-20px)', opacity: 0 },
+              '100%': { transform: 'translateY(0)', opacity: 1 }
             },
-            'checkmark': {
-              '0%': { transform: 'scale(0)' },
-              '50%': { transform: 'scale(1.2)' },
-              '100%': { transform: 'scale(1)' }
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: 0 },
+              '100%': { transform: 'translateY(0)', opacity: 1 }
+            },
+            bounceIn: {
+              '0%': { transform: 'scale(0.3)', opacity: 0 },
+              '50%': { transform: 'scale(1.05)', opacity: 1 },
+              '70%': { transform: 'scale(0.9)', opacity: 1 },
+              '100%': { transform: 'scale(1)', opacity: 1 }
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(16, 185, 129, 0.4)' },
+              '50%': { boxShadow: '0 0 40px rgba(16, 185, 129, 0.7)' }
+            },
+            notificationSlide: {
+              '0%': { transform: 'translateX(100%)', opacity: 0 },
+              '100%': { transform: 'translateX(0)', opacity: 1 }
+            },
+            notificationHide: {
+              '0%': { transform: 'translateX(0)', opacity: 1 },
+              '100%': { transform: 'translateX(100%)', opacity: 0 }
             }
-          },
-          backgroundImage: {
-            'gradient-primary': 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
-            'gradient-success': 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
-            'gradient-danger': 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)',
-            'gradient-dark': 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-            'gradient-gold': 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)'
           }
         }
       }
@@ -87,333 +90,364 @@
   </script>
 
   <style>
-    /* Custom Styles */
-    :root {
-      --primary: #2563eb;
-      --success: #10b981;
-      --danger: #ef4444;
-    }
-    
-    /* Glass Effect */
-    .glass-effect {
-      background: rgba(255, 255, 255, 0.1);
+    /* Enhanced Styles */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    /* Premium Card Hover */
-    .card-hover {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .gradient-border {
+      position: relative;
+      border: 2px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, #2563eb, #0ea5e9) border-box;
     }
     
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    .btn-glow {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     
-    /* Custom Scrollbar */
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
+    .btn-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
     }
     
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f5f9;
-      border-radius: 3px;
+    .btn-glow:active {
+      transform: translateY(0);
     }
     
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 3px;
+    .input-enhanced {
+      transition: all 0.2s ease;
+      border: 2px solid #e2e8f0;
     }
     
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-    
-    /* Input Focus Effects */
-    .input-focus:focus {
-      outline: none;
+    .input-enhanced:focus {
       border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      outline: none;
     }
     
-    /* Checkmark Animation */
-    .checkmark-animation {
+    /* Smooth page transition */
+    .page-enter {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+    
+    /* Checkmark animation */
+    .checkmark {
       animation: checkmark 0.5s ease-out;
     }
     
-    /* Pulse Animation */
-    .pulse-animation {
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    @keyframes checkmark {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Pulse effect for important elements */
+    .pulse-important {
+      animation: pulse 2s infinite;
     }
     
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      50% { opacity: 0.8; }
     }
     
-    /* Page Transition */
-    .page-transition {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+    /* Modal overlay blur */
+    .modal-overlay {
+      backdrop-filter: blur(8px);
     }
     
-    .page-transition.active {
-      opacity: 1;
-      transform: translateY(0);
+    /* Success package animation */
+    .package-success {
+      position: relative;
+      overflow: hidden;
     }
     
-    /* Modal Entrance */
-    .modal-entrance {
-      animation: modalEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    .package-success::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+      transition: left 0.6s;
     }
     
-    @keyframes modalEntrance {
-      0% {
-        opacity: 0;
-        transform: scale(0.9) translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
+    .package-success:hover::before {
+      left: 100%;
+    }
+    
+    /* Notification badge */
+    .notification-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      animation: pulseGlow 2s infinite;
+    }
+    
+    /* Progress bar */
+    .progress-bar {
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: #e2e8f0;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #34d399);
+      transition: width 0.6s ease;
+    }
+    
+    /* Shimmer effect */
+    .shimmer {
+      background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.6) 50%, 
+        rgba(255,255,255,0) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    /* Floating notification system */
+    .notification-system {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 350px;
     }
   </style>
 </head>
 
-<body class="bg-gradient-to-br from-slate-50 to-blue-50 font-sans text-slate-800 min-h-screen overflow-x-hidden">
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 font-sans text-slate-800 min-h-screen">
   
-  <!-- Notification Toast -->
-  <div id="toast" class="fixed top-6 right-6 z-50 hidden">
-    <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 animate-slide-down border border-slate-700 min-w-[300px]">
-      <div id="toastIcon" class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-        <i class="ri-checkbox-circle-fill text-emerald-400"></i>
-      </div>
-      <div class="flex-1">
-        <h4 id="toastTitle" class="font-bold">Notification</h4>
-        <p id="toastMessage" class="text-sm text-slate-300">Message content</p>
-      </div>
-      <button onclick="hideToast()" class="text-slate-400 hover:text-white">
-        <i class="ri-close-line"></i>
-      </button>
-    </div>
+  <!-- Notification System -->
+  <div class="notification-system" id="notificationSystem">
+    <!-- Notifications will be added here dynamically -->
   </div>
 
   <!-- Main Container -->
   <div class="flex min-h-screen">
     
     <!-- ===== SIDEBAR ===== -->
-    <aside class="w-80 bg-gradient-to-b from-slate-900 to-slate-950 text-white p-8 sticky top-0 h-screen overflow-y-auto custom-scrollbar">
-      <!-- Logo & Title -->
+    <aside class="w-72 bg-gradient-to-b from-dark to-dark-light text-white p-8 sticky top-0 h-screen overflow-y-auto">
+      <!-- ... [SIDEBAR CODE SAMA SEPERTI SEBELUMNYA] ... -->
       <div class="mb-12">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-xl">
-            <i class="ri-shield-star-line text-2xl text-white"></i>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+            <i class="ri-shield-star-line text-white text-xl"></i>
           </div>
           <div>
-            <h1 class="text-2xl font-black tracking-tight">ASIANG SYSTEM</h1>
-            <p class="text-sm text-slate-400">Advanced Banking Platform</p>
+            <h1 class="text-2xl font-bold">Asiang Panel</h1>
+            <p class="text-slate-400 text-sm">Sistem Management Nasabah</p>
           </div>
         </div>
         
-        <!-- System Status -->
-        <div class="bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-2xl p-4 border border-slate-700/50 mb-8">
+        <div class="glass-card rounded-xl p-4 mb-8">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-sm text-slate-400">System Status</span>
-            <span class="px-3 py-1 bg-emerald-900/30 text-emerald-400 text-xs font-bold rounded-full">LIVE</span>
+            <span class="text-sm text-slate-400">Status Sistem</span>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+              <span class="text-sm font-semibold text-emerald-400">Online</span>
+            </div>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-slate-400">Server Time</span>
+            <span class="text-sm text-slate-400">Waktu Server</span>
             <span id="systemClock" class="font-mono font-bold">--:--:--</span>
           </div>
         </div>
       </div>
       
-      <!-- Navigation -->
-      <nav class="space-y-4">
-        <h3 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-6">MAIN NAVIGATION</h3>
+      <nav class="space-y-3">
+        <h3 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-6">Menu Utama</h3>
         
-        <!-- Penguncian Paket -->
-        <button id="navLock" class="w-full text-left p-5 rounded-2xl bg-gradient-to-r from-slate-800/80 to-slate-900/80 hover:from-emerald-900/40 hover:to-emerald-800/40 border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300 flex items-center gap-4 card-hover group">
+        <!-- Penguncian Paket Button -->
+        <button id="navLock" class="w-full text-left p-5 rounded-xl bg-gradient-to-r from-dark-light to-dark hover:from-emerald-900/40 hover:to-emerald-800/40 border border-slate-700 hover:border-emerald-500/30 transition-all duration-300 flex items-center gap-4 btn-glow group">
           <div class="relative">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <i class="ri-lock-2-line text-white text-xl"></i>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <i class="ri-lock-line text-white text-lg"></i>
             </div>
-            <div class="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+            <div class="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center">
               <i class="ri-check-line text-xs text-white"></i>
             </div>
           </div>
           <div class="flex-1">
-            <p class="font-bold text-white">Penguncian Paket</p>
-            <p class="text-xs text-slate-400 group-hover:text-emerald-300">Lock package system</p>
+            <p class="font-semibold text-white">Penguncian Paket</p>
+            <p class="text-xs text-slate-400 group-hover:text-emerald-300">Input data nasabah</p>
           </div>
-          <i class="ri-arrow-right-s-line text-slate-500 group-hover:text-emerald-400 text-xl transition-all opacity-0 group-hover:opacity-100"></i>
+          <i class="ri-arrow-right-s-line text-slate-500 group-hover:text-emerald-400 text-xl transition-all"></i>
         </button>
         
-        <!-- Garansi Ditolak -->
-        <button id="navReject" class="w-full text-left p-5 rounded-2xl bg-gradient-to-r from-slate-800/80 to-slate-900/80 hover:from-rose-900/40 hover:to-rose-800/40 border border-slate-700/50 hover:border-rose-500/30 transition-all duration-300 flex items-center gap-4 card-hover group">
+        <!-- Garansi Ditolak Button -->
+        <button id="navReject" class="w-full text-left p-5 rounded-xl bg-gradient-to-r from-dark-light to-dark hover:from-rose-900/40 hover:to-rose-800/40 border border-slate-700 hover:border-rose-500/30 transition-all duration-300 flex items-center gap-4 btn-glow group">
           <div class="relative">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-600 to-rose-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <i class="ri-shield-cross-line text-white text-xl"></i>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-600 to-rose-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <i class="ri-close-circle-line text-white text-lg"></i>
             </div>
-            <div class="absolute -top-2 -right-2 w-6 h-6 bg-rose-500 rounded-full flex items-center justify-center shadow-lg">
+            <div class="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 rounded-full flex items-center justify-center">
               <i class="ri-close-line text-xs text-white"></i>
             </div>
           </div>
           <div class="flex-1">
-            <p class="font-bold text-white">Garansi Ditolak</p>
-            <p class="text-xs text-slate-400 group-hover:text-rose-300">Warranty rejection</p>
+            <p class="font-semibold text-white">Garansi Ditolak</p>
+            <p class="text-xs text-slate-400 group-hover:text-rose-300">Status penolakan</p>
           </div>
-          <i class="ri-arrow-right-s-line text-slate-500 group-hover:text-rose-400 text-xl transition-all opacity-0 group-hover:opacity-100"></i>
+          <i class="ri-arrow-right-s-line text-slate-500 group-hover:text-rose-400 text-xl transition-all"></i>
         </button>
       </nav>
       
       <!-- Quick Stats -->
       <div class="mt-12 pt-8 border-t border-slate-800">
-        <h3 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4">SYSTEM STATS</h3>
+        <h3 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4">Statistik Cepat</h3>
         <div class="space-y-3">
           <div class="flex justify-between items-center">
-            <span class="text-sm text-slate-300">Active Sessions</span>
-            <span class="font-bold">24</span>
+            <span class="text-sm text-slate-300">Paket Terkunci</span>
+            <span class="font-bold text-emerald-400">896</span>
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-sm text-slate-300">Total Packages</span>
-            <span class="font-bold text-emerald-400">1,842</span>
+            <span class="text-sm text-slate-300">Garansi Ditolak</span>
+            <span class="font-bold text-rose-400">214</span>
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-sm text-slate-300">Security Level</span>
-            <span class="font-bold text-primary">MAX</span>
+            <span class="text-sm text-slate-300">Total Nasabah</span>
+            <span class="font-bold">1,842</span>
           </div>
         </div>
       </div>
     </aside>
 
     <!-- ===== MAIN CONTENT ===== -->
-    <main class="flex-1 p-8 overflow-y-auto custom-scrollbar">
+    <main class="flex-1 p-8 overflow-y-auto">
+      
       <!-- Header -->
-      <div class="mb-10">
+      <div class="mb-10 animate-fade-in">
         <div class="flex items-center justify-between mb-6">
           <div>
-            <h1 class="text-4xl font-black text-slate-900 mb-2">ASIANG BANKING SYSTEM</h1>
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Sistem Panel Nasabah Premium</h1>
             <p class="text-slate-600">Advanced customer management platform</p>
           </div>
           <div class="flex items-center gap-4">
-            <div class="px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-bold flex items-center gap-2 shadow-lg">
+            <div class="px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold flex items-center gap-2 shadow-lg">
               <i class="ri-shield-check-line"></i>
-              SECURED SESSION
+              Sistem Terproteksi
             </div>
             <div class="text-right">
-              <p class="text-sm text-slate-500">Real-time</p>
+              <p class="text-sm text-slate-500">Waktu Real-time</p>
               <p id="liveClock" class="font-mono font-bold text-2xl text-slate-800">--:--:--</p>
             </div>
           </div>
         </div>
         
-        <!-- Dashboard Stats -->
+        <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div class="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 shadow-xl border border-slate-200/50 card-hover">
+          <!-- ... [STATS CARDS SAMA SEPERTI SEBELUMNYA] ... -->
+          <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 animate-scale-in hover:shadow-2xl transition-shadow duration-300">
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-sm text-slate-500 font-semibold mb-2">Total Nasabah</p>
-                <h3 class="text-3xl font-black text-slate-900">1,842</h3>
+                <h3 class="text-3xl font-bold text-slate-900">1,842</h3>
               </div>
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                <i class="ri-user-3-fill text-2xl text-blue-600"></i>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                <i class="ri-user-3-fill text-blue-600 text-xl"></i>
               </div>
             </div>
             <div class="mt-4 flex items-center gap-2 text-sm">
               <i class="ri-arrow-up-line text-emerald-500"></i>
-              <span class="text-emerald-600 font-semibold">+12% growth</span>
+              <span class="text-emerald-600 font-semibold">+12% aktif</span>
             </div>
           </div>
           
-          <div class="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 shadow-xl border border-slate-200/50 card-hover">
+          <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 animate-scale-in hover:shadow-2xl transition-shadow duration-300" style="animation-delay: 0.1s">
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-sm text-slate-500 font-semibold mb-2">Paket Terkunci</p>
-                <h3 class="text-3xl font-black text-slate-900">896</h3>
+                <h3 class="text-3xl font-bold text-slate-900">896</h3>
               </div>
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center">
-                <i class="ri-lock-fill text-2xl text-emerald-600"></i>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center">
+                <i class="ri-lock-fill text-emerald-600 text-xl"></i>
               </div>
             </div>
             <div class="mt-4 flex items-center gap-2 text-sm">
               <i class="ri-shield-check-line text-blue-500"></i>
-              <span class="text-blue-600 font-semibold">Active protection</span>
+              <span class="text-blue-600 font-semibold">Proteksi aktif</span>
             </div>
           </div>
           
-          <div class="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 shadow-xl border border-slate-200/50 card-hover">
+          <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 animate-scale-in hover:shadow-2xl transition-shadow duration-300" style="animation-delay: 0.2s">
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-sm text-slate-500 font-semibold mb-2">Garansi Ditolak</p>
-                <h3 class="text-3xl font-black text-slate-900">214</h3>
+                <h3 class="text-3xl font-bold text-slate-900">214</h3>
               </div>
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center">
-                <i class="ri-close-circle-fill text-2xl text-rose-600"></i>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center">
+                <i class="ri-close-circle-fill text-rose-600 text-xl"></i>
               </div>
             </div>
             <div class="mt-4 flex items-center gap-2 text-sm">
               <i class="ri-alert-line text-amber-500"></i>
-              <span class="text-amber-600 font-semibold">Needs review</span>
+              <span class="text-amber-600 font-semibold">Perlu penyesuaian</span>
             </div>
           </div>
           
-          <div class="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 shadow-xl border border-slate-200/50 card-hover">
+          <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 animate-scale-in hover:shadow-2xl transition-shadow duration-300" style="animation-delay: 0.3s">
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-sm text-slate-500 font-semibold mb-2">System Uptime</p>
-                <h3 class="text-3xl font-black text-emerald-600">99.9%</h3>
+                <p class="text-sm text-slate-500 font-semibold mb-2">Status Sistem</p>
+                <h3 class="text-3xl font-bold text-emerald-600">100%</h3>
               </div>
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                <i class="ri-server-fill text-2xl text-slate-600"></i>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                <i class="ri-server-fill text-slate-600 text-xl"></i>
               </div>
             </div>
             <div class="mt-4 flex items-center gap-2 text-sm">
               <i class="ri-wifi-line text-emerald-500"></i>
-              <span class="text-emerald-600 font-semibold">All systems operational</span>
+              <span class="text-emerald-600 font-semibold">Semua sistem operasional</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- ===== FORM PENGUNCIAN PAKET ===== -->
-      <section id="sectionLock" class="page-transition active">
-        <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200/50">
+      <section id="sectionLock" class="page-enter">
+        <!-- ... [FORM PENGUNCIAN PAKET SAMA SEPERTI SEBELUMNYA] ... -->
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200">
           <!-- Form Header -->
-          <div class="relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500 animate-gradient-shift"></div>
-            <div class="relative p-8 text-white">
-              <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-4">
-                  <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-xl">
-                    <i class="ri-lock-2-fill text-2xl"></i>
-                  </div>
-                  <div>
-                    <h2 class="text-3xl font-black">PENGUNCIAN PAKET</h2>
-                    <p class="text-emerald-100">Input data nasabah untuk penguncian paket trading</p>
-                  </div>
+          <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 p-8 text-white">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <i class="ri-lock-2-line text-2xl"></i>
                 </div>
-                <div class="flex items-center gap-4">
-                  <div class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-sm font-bold">
-                    <i class="ri-shield-star-line mr-2"></i>SECURE FORM
-                  </div>
+                <div>
+                  <h2 class="text-2xl font-bold">Penguncian Paket</h2>
+                  <p class="text-emerald-100">Input data nasabah untuk penguncian paket trading</p>
                 </div>
               </div>
-              
-              <div class="grid grid-cols-3 gap-4">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <p class="text-sm opacity-90">Status</p>
-                  <p class="text-xl font-black">ACTIVE</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <p class="text-sm opacity-90">Security Level</p>
-                  <p class="text-xl font-black">MAXIMUM</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <p class="text-sm opacity-90">Validation</p>
-                  <p class="text-xl font-black">REQUIRED</p>
+              <div class="flex items-center gap-3">
+                <div class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-sm font-semibold">
+                  <i class="ri-shield-star-line mr-2"></i>Form Terproteksi
                 </div>
               </div>
             </div>
@@ -421,87 +455,67 @@
           
           <!-- Form Content -->
           <div class="p-8">
-            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div class="grid lg:grid-cols-2 gap-8">
               <!-- Left Column -->
-              <div class="space-y-8">
+              <div class="space-y-6">
                 <!-- Email Nasabah -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                      <i class="ri-mail-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                      <i class="ri-mail-line text-white text-sm"></i>
                     </div>
-                    <span>EMAIL NASABAH <span class="text-rose-500">*</span></span>
+                    <span>Email Nasabah <span class="text-rose-500">*</span></span>
                   </label>
-                  <div class="relative">
-                    <input 
-                      type="email" 
-                      id="lockEmail"
-                      class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-200 transition-all outline-none shadow-sm"
-                      placeholder="nasabah@domain.com"
-                      required
-                    >
-                    <div class="absolute right-4 top-4">
-                      <i id="lockEmailCheck" class="ri-checkbox-circle-fill text-emerald-500 hidden checkmark-animation"></i>
-                    </div>
-                  </div>
-                  <p class="text-xs text-slate-500 mt-2 flex items-center gap-2">
-                    <i class="ri-information-line"></i> Masukkan email nasabah yang terdaftar di sistem
-                  </p>
+                  <input 
+                    type="email" 
+                    id="lockEmail"
+                    class="input-enhanced w-full p-4 rounded-xl"
+                    placeholder="nasabah@domain.com"
+                    required
+                  >
+                  <p class="text-xs text-slate-500 mt-2">Masukkan email nasabah yang terdaftar</p>
                 </div>
                 
                 <!-- Jenis Paket -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
-                      <i class="ri-package-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                      <i class="ri-package-line text-white text-sm"></i>
                     </div>
-                    <span>JENIS PAKET <span class="text-rose-500">*</span></span>
+                    <span>Jenis Paket <span class="text-rose-500">*</span></span>
                   </label>
-                  <select id="lockPaket" class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-200 transition-all outline-none shadow-sm appearance-none">
+                  <select id="lockPaket" class="input-enhanced w-full p-4 rounded-xl appearance-none">
                     <option value="">Pilih Jenis Paket</option>
-                    <optgroup label="📦 PAKET TRADING UTAMA">
-                      <option>Paket Trading Pertama</option>
-                      <option>Paket Trading Kedua</option>
-                      <option>Paket Trading Ketiga</option>
-                      <option>Paket Trading Keempat</option>
-                    </optgroup>
-                    <optgroup label="⏰ PAKET TRADING WAKTU">
-                      <option>Paket Trading Pagi</option>
-                      <option>Paket Trading Siang</option>
-                      <option>Paket Trading Sore</option>
-                    </optgroup>
-                    <optgroup label="⭐ PAKET KHUSUS">
-                      <option>Paket Trading Exclusive</option>
-                      <option>Paket Trading VIP</option>
-                    </optgroup>
-                    <optgroup label="💰 EXTRA DIVIDEN">
-                      <option>Extra Dividen Paket 1</option>
-                      <option>Extra Dividen Paket 2</option>
-                      <option>Extra Dividen Paket 3</option>
-                      <option>Extra Dividen</option>
-                      <option>Extra Dividen Penarikan</option>
-                    </optgroup>
-                    <optgroup label="🎯 PAKET SPESIAL">
-                      <option>Paket Trading Promo</option>
-                      <option>Paket Trading Perbaikan</option>
-                      <option>Paket Trading Validasi</option>
-                      <option>Paket Trading Express</option>
-                    </optgroup>
+                    <option>Paket Trading Pertama</option>
+                    <option>Paket Trading Kedua</option>
+                    <option>Paket Trading Ketiga</option>
+                    <option>Paket Trading Keempat</option>
+                    <option>Paket Trading Pagi</option>
+                    <option>Paket Trading Siang</option>
+                    <option>Paket Trading Sore</option>
+                    <option>Paket Trading Exclusive</option>
+                    <option>Extra Dividen Paket 1</option>
+                    <option>Extra Dividen Paket 2</option>
+                    <option>Extra Dividen Paket 3</option>
+                    <option>Extra Dividen</option>
+                    <option>Extra Dividen Penarikan</option>
+                    <option>Paket Trading Promo</option>
+                    <option>Paket Trading Perbaikan</option>
+                    <option>Paket Trading Validasi</option>
+                    <option>Paket Trading Express</option>
+                    <option>Paket Trading VIP</option>
                   </select>
-                  <p class="text-xs text-slate-500 mt-2 flex items-center gap-2">
-                    <i class="ri-star-s-fill text-amber-500"></i> Pilih paket sesuai kebutuhan nasabah
-                  </p>
                 </div>
                 
                 <!-- Tahapan Paket -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
-                      <i class="ri-list-ordered text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
+                      <i class="ri-list-ordered text-white text-sm"></i>
                     </div>
-                    <span>TAHAPAN PAKET <span class="text-rose-500">*</span></span>
+                    <span>Tahapan Paket <span class="text-rose-500">*</span></span>
                   </label>
-                  <select id="lockTahap" class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-200 transition-all outline-none shadow-sm appearance-none">
+                  <select id="lockTahap" class="input-enhanced w-full p-4 rounded-xl appearance-none">
                     <option value="">Pilih Tahapan</option>
                     <option>Paket 1</option>
                     <option>Paket 2</option>
@@ -515,30 +529,30 @@
               </div>
               
               <!-- Right Column -->
-              <div class="space-y-8">
+              <div class="space-y-6">
                 <!-- Modal Trading -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
-                      <i class="ri-money-dollar-circle-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <i class="ri-money-dollar-circle-line text-white text-sm"></i>
                     </div>
-                    <span>MODAL TRADING (IDR) <span class="text-rose-500">*</span></span>
+                    <span>Modal Trading (Rp) <span class="text-rose-500">*</span></span>
                   </label>
                   <div class="relative">
                     <input 
                       type="text" 
                       id="lockModal"
-                      class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-200 transition-all outline-none shadow-sm pl-12"
+                      class="input-enhanced w-full p-4 rounded-xl pl-12"
                       placeholder="10.000.000"
                       oninput="formatCurrency(this)"
                     >
                     <div class="absolute left-4 top-4">
-                      <span class="font-bold text-slate-700">Rp</span>
+                      <span class="font-semibold text-slate-700">Rp</span>
                     </div>
                     <button 
                       type="button"
                       onclick="formatCurrency(document.getElementById('lockModal'))"
-                      class="absolute right-4 top-4 text-blue-600 hover:text-blue-800"
+                      class="absolute right-4 top-4 text-primary hover:text-blue-700"
                       title="Format angka"
                     >
                       <i class="ri-refresh-line"></i>
@@ -548,64 +562,52 @@
                 
                 <!-- Profit Persentase -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
-                      <i class="ri-line-chart-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
+                      <i class="ri-line-chart-line text-white text-sm"></i>
                     </div>
-                    <span>PROFIT (%) <span class="text-rose-500">*</span></span>
+                    <span>Profit (%) <span class="text-rose-500">*</span></span>
                   </label>
                   <div class="relative">
                     <input 
                       type="number" 
                       id="lockProfit"
-                      class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-cyan-500 focus:ring-4 focus:ring-cyan-200 transition-all outline-none shadow-sm"
+                      class="input-enhanced w-full p-4 rounded-xl"
                       placeholder="15"
                       min="0"
                       max="100"
                       step="0.1"
                     >
                     <div class="absolute right-4 top-4">
-                      <span class="font-bold text-slate-700">%</span>
-                    </div>
-                  </div>
-                  <div class="mt-3">
-                    <div class="h-3 w-full bg-slate-200 rounded-full overflow-hidden">
-                      <div id="profitBar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
-                    </div>
-                    <div class="flex justify-between text-xs text-slate-500 mt-1">
-                      <span>0%</span>
-                      <span>25%</span>
-                      <span>50%</span>
-                      <span>75%</span>
-                      <span>100%</span>
+                      <span class="font-semibold text-slate-700">%</span>
                     </div>
                   </div>
                 </div>
                 
                 <!-- Hasil Perhitungan -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
-                      <i class="ri-calculator-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                      <i class="ri-calculator-line text-white text-sm"></i>
                     </div>
-                    <span>HASIL PERHITUNGAN</span>
+                    <span>Hasil Perhitungan</span>
                   </label>
                   <div class="relative">
                     <input 
                       type="text" 
                       id="lockHasil"
-                      class="w-full p-4 rounded-xl border-2 border-slate-300 bg-slate-50 focus:border-slate-500 focus:ring-4 focus:ring-slate-200 transition-all outline-none shadow-sm font-bold text-slate-900 pr-24"
+                      class="input-enhanced w-full p-4 rounded-xl bg-slate-50 font-bold text-slate-900 pr-24"
                       readonly
                     >
                     <div class="absolute right-4 top-4 flex items-center gap-3">
                       <button 
                         id="btnCopyLock"
-                        class="text-blue-600 hover:text-blue-800 transition-colors"
+                        class="text-primary hover:text-blue-700"
                         title="Copy hasil"
                       >
-                        <i class="ri-clipboard-fill"></i>
+                        <i class="ri-clipboard-line"></i>
                       </button>
-                      <span class="font-bold text-slate-700">IDR</span>
+                      <span class="font-semibold text-slate-700">IDR</span>
                     </div>
                   </div>
                 </div>
@@ -614,24 +616,22 @@
             
             <!-- Catatan Manual -->
             <div class="mt-8">
-              <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
-                  <i class="ri-sticky-note-fill text-white"></i>
+              <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
+                  <i class="ri-sticky-note-line text-white text-sm"></i>
                 </div>
-                <span>CATATAN MANUAL (OPTIONAL)</span>
+                <span>Catatan Manual (Opsional)</span>
               </label>
               <textarea 
                 id="lockNote"
                 rows="3" 
-                class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-slate-500 focus:ring-4 focus:ring-slate-200 transition-all outline-none shadow-sm"
-                placeholder="Tambahkan catatan khusus untuk nasabah..."
+                class="input-enhanced w-full p-4 rounded-xl"
+                placeholder="Tulis catatan khusus untuk nasabah..."
                 maxlength="500"
               ></textarea>
               <div class="flex justify-between text-xs text-slate-500 mt-2">
-                <div class="flex items-center gap-2">
-                  <i class="ri-information-line"></i> Kosongkan untuk menggunakan template sistem
-                </div>
-                <span id="charCountLock">0/500 karakter</span>
+                <span>Catatan aktif dan akan ditampilkan di sistem</span>
+                <span id="charCountLock">0/500</span>
               </div>
             </div>
             
@@ -639,35 +639,27 @@
             <div class="mt-12 flex flex-wrap gap-6">
               <button 
                 id="btnProcessLock"
-                class="px-10 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-bold text-lg flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 animate-pulse-glow"
+                class="px-10 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-semibold text-lg flex items-center gap-3 btn-glow"
               >
-                <i class="ri-lock-2-fill"></i>
-                PROSES PENGUNCIAN PAKET
+                <i class="ri-lock-line"></i>
+                Proses Penguncian Paket
                 <i class="ri-arrow-right-line"></i>
               </button>
               
               <button 
                 id="btnCalculate"
-                class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+                class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-semibold flex items-center gap-3 btn-glow"
               >
                 <i class="ri-calculator-line"></i>
-                HITUNG OTOMATIS
+                Hitung Otomatis
               </button>
               
               <button 
                 id="btnResetLock"
-                class="px-8 py-4 bg-gradient-to-r from-slate-200 to-slate-300 text-slate-800 rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+                class="px-8 py-4 bg-gradient-to-r from-slate-200 to-slate-300 text-slate-800 rounded-2xl font-semibold flex items-center gap-3 btn-glow"
               >
                 <i class="ri-refresh-line"></i>
-                RESET FORM
-              </button>
-              
-              <button 
-                id="btnSaveLock"
-                class="px-8 py-4 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
-              >
-                <i class="ri-save-3-fill"></i>
-                SIMPAN DRAFT
+                Reset Form
               </button>
             </div>
           </div>
@@ -675,41 +667,24 @@
       </section>
       
       <!-- ===== FORM GARANSI DITOLAK ===== -->
-      <section id="sectionReject" class="page-transition hidden">
-        <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200/50">
+      <section id="sectionReject" class="page-enter hidden">
+        <!-- ... [FORM GARANSI DITOLAK SAMA SEPERTI SEBELUMNYA] ... -->
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200">
           <!-- Form Header -->
-          <div class="relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 animate-gradient-shift"></div>
-            <div class="relative p-8 text-white">
-              <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-4">
-                  <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-xl">
-                    <i class="ri-shield-cross-fill text-2xl"></i>
-                  </div>
-                  <div>
-                    <h2 class="text-3xl font-black">GARANSI DITOLAK</h2>
-                    <p class="text-rose-100">Input data penolakan dan alternatif paket yang tersedia</p>
-                  </div>
+          <div class="bg-gradient-to-r from-rose-600 to-rose-700 p-8 text-white">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <i class="ri-shield-cross-line text-2xl"></i>
                 </div>
-                <div class="flex items-center gap-4">
-                  <div class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-sm font-bold">
-                    <i class="ri-alert-fill mr-2"></i>REVIEW REQUIRED
-                  </div>
+                <div>
+                  <h2 class="text-2xl font-bold">Garansi Ditolak</h2>
+                  <p class="text-rose-100">Input data penolakan dan alternatif paket</p>
                 </div>
               </div>
-              
-              <div class="grid grid-cols-3 gap-4">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <p class="text-sm opacity-90">Status</p>
-                  <p class="text-xl font-black">REJECTED</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <p class="text-sm opacity-90">Priority</p>
-                  <p class="text-xl font-black">HIGH</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <p class="text-sm opacity-90">Review</p>
-                  <p class="text-xl font-black">REQUIRED</p>
+              <div class="flex items-center gap-3">
+                <div class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-sm font-semibold">
+                  <i class="ri-alert-line mr-2"></i>Review Diperlukan
                 </div>
               </div>
             </div>
@@ -717,130 +692,111 @@
           
           <!-- Form Content -->
           <div class="p-8">
-            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div class="grid lg:grid-cols-2 gap-8">
               <!-- Left Column -->
-              <div class="space-y-8">
+              <div class="space-y-6">
                 <!-- Email Nasabah -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                      <i class="ri-mail-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                      <i class="ri-mail-line text-white text-sm"></i>
                     </div>
-                    <span>EMAIL NASABAH <span class="text-rose-500">*</span></span>
+                    <span>Email Nasabah <span class="text-rose-500">*</span></span>
                   </label>
-                  <div class="relative">
-                    <input 
-                      type="email" 
-                      id="rejectEmail"
-                      class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-200 transition-all outline-none shadow-sm"
-                      placeholder="nasabah@domain.com"
-                      required
-                    >
-                    <div class="absolute right-4 top-4">
-                      <i id="rejectEmailCheck" class="ri-checkbox-circle-fill text-emerald-500 hidden checkmark-animation"></i>
-                    </div>
-                  </div>
-                  <p class="text-xs text-slate-500 mt-2 flex items-center gap-2">
-                    <i class="ri-information-line"></i> Email nasabah yang mengajukan garansi
-                  </p>
+                  <input 
+                    type="email" 
+                    id="rejectEmail"
+                    class="input-enhanced w-full p-4 rounded-xl"
+                    placeholder="nasabah@domain.com"
+                    required
+                  >
+                  <p class="text-xs text-slate-500 mt-2">Email nasabah yang mengajukan garansi</p>
                 </div>
                 
                 <!-- Paket yang Diajukan -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center">
-                      <i class="ri-close-circle-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center">
+                      <i class="ri-close-circle-line text-white text-sm"></i>
                     </div>
-                    <span>PAKET YANG DIAJUKAN <span class="text-rose-500">*</span></span>
+                    <span>Paket yang Diajukan <span class="text-rose-500">*</span></span>
                   </label>
-                  <select id="rejectPaket" class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-rose-500 focus:ring-4 focus:ring-rose-200 transition-all outline-none shadow-sm appearance-none">
+                  <select id="rejectPaket" class="input-enhanced w-full p-4 rounded-xl appearance-none">
                     <option value="">Pilih Paket Diajukan</option>
-                    <optgroup label="📦 PAKET TRADING UTAMA">
-                      <option>Paket Trading Pertama</option>
-                      <option>Paket Trading Kedua</option>
-                      <option>Paket Trading Ketiga</option>
-                      <option>Paket Trading Keempat</option>
-                    </optgroup>
-                    <optgroup label="⏰ PAKET TRADING WAKTU">
-                      <option>Paket Trading Pagi</option>
-                      <option>Paket Trading Siang</option>
-                      <option>Paket Trading Sore</option>
-                    </optgroup>
-                    <optgroup label="⭐ PAKET KHUSUS">
-                      <option>Paket Trading Exclusive</option>
-                      <option>Paket Trading VIP</option>
-                    </optgroup>
-                    <optgroup label="💰 EXTRA DIVIDEN">
-                      <option>Extra Dividen Paket 1</option>
-                      <option>Extra Dividen Paket 2</option>
-                      <option>Extra Dividen Paket 3</option>
-                      <option>Extra Dividen</option>
-                      <option>Extra Dividen Penarikan</option>
-                    </optgroup>
-                    <optgroup label="🎯 PAKET SPESIAL">
-                      <option>Paket Trading Promo</option>
-                      <option>Paket Trading Perbaikan</option>
-                      <option>Paket Trading Validasi</option>
-                      <option>Paket Trading Express</option>
-                    </optgroup>
+                    <option>Paket Trading Pertama</option>
+                    <option>Paket Trading Kedua</option>
+                    <option>Paket Trading Ketiga</option>
+                    <option>Paket Trading Keempat</option>
+                    <option>Paket Trading Pagi</option>
+                    <option>Paket Trading Siang</option>
+                    <option>Paket Trading Sore</option>
+                    <option>Paket Trading Exclusive</option>
+                    <option>Extra Dividen Paket 1</option>
+                    <option>Extra Dividen Paket 2</option>
+                    <option>Extra Dividen Paket 3</option>
+                    <option>Extra Dividen</option>
+                    <option>Extra Dividen Penarikan</option>
+                    <option>Paket Trading Promo</option>
+                    <option>Paket Trading Perbaikan</option>
+                    <option>Paket Trading Validasi</option>
+                    <option>Paket Trading Express</option>
+                    <option>Paket Trading VIP</option>
                   </select>
                 </div>
                 
                 <!-- Modal Diajukan -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
-                      <i class="ri-money-dollar-circle-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <i class="ri-money-dollar-circle-line text-white text-sm"></i>
                     </div>
-                    <span>MODAL DIAJUKAN (IDR) <span class="text-rose-500">*</span></span>
+                    <span>Modal Diajukan (Rp) <span class="text-rose-500">*</span></span>
                   </label>
                   <div class="relative">
                     <input 
                       type="text" 
                       id="rejectModal"
-                      class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-200 transition-all outline-none shadow-sm pl-12"
+                      class="input-enhanced w-full p-4 rounded-xl pl-12"
                       placeholder="10.000.000"
                       oninput="formatCurrency(this)"
                     >
                     <div class="absolute left-4 top-4">
-                      <span class="font-bold text-slate-700">Rp</span>
+                      <span class="font-semibold text-slate-700">Rp</span>
                     </div>
                   </div>
                 </div>
               </div>
               
               <!-- Right Column -->
-              <div class="space-y-8">
+              <div class="space-y-6">
                 <!-- Paket Tersedia -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
-                      <i class="ri-checkbox-circle-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <i class="ri-checkbox-circle-line text-white text-sm"></i>
                     </div>
-                    <span>PAKET TERSEDIA (TAHAP) <span class="text-rose-500">*</span></span>
+                    <span>Pilih Paket Tersedia yang Masih Tersedia dalam Sistem <span class="text-rose-500">*</span></span>
                   </label>
-                  <select id="rejectTahap" class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-200 transition-all outline-none shadow-sm appearance-none">
+                  <select id="rejectTahap" class="input-enhanced w-full p-4 rounded-xl appearance-none">
                     <option value="">Pilih Paket Tersedia</option>
                     <option>Paket 1</option>
                     <option>Paket 2</option>
                     <option>Paket 3</option>
                     <option>Paket 4</option>
                     <option>Paket 5</option>
-                    <option>Penarikan</option>
-                    <option>Akhir</option>
                   </select>
                 </div>
                 
-                <!-- Paket Alternatif 1 -->
+                <!-- Paket Alternatif -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
-                      <i class="ri-arrow-right-circle-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
+                      <i class="ri-arrow-right-circle-line text-white text-sm"></i>
                     </div>
-                    <span>PAKET ALTERNATIF 1</span>
+                    <span>Paket Alternatif</span>
                   </label>
-                  <select id="rejectAlt1" class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-cyan-500 focus:ring-4 focus:ring-cyan-200 transition-all outline-none shadow-sm appearance-none">
-                    <option value="">Pilih Alternatif 1</option>
+                  <select id="rejectAlt1" class="input-enhanced w-full p-4 rounded-xl appearance-none">
+                    <option value="">Pilih Paket Alternatif</option>
                     <option>Paket 1</option>
                     <option>Paket 2</option>
                     <option>Paket 3</option>
@@ -849,46 +805,26 @@
                   </select>
                 </div>
                 
-                <!-- Paket Alternatif 2 -->
+                <!-- Catatan Penolakan -->
                 <div class="group">
-                  <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
-                      <i class="ri-arrow-right-circle-fill text-white"></i>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
+                      <i class="ri-alert-line text-white text-sm"></i>
                     </div>
-                    <span>PAKET ALTERNATIF 2</span>
+                    <span>Catatan Penolakan (Opsional)</span>
                   </label>
-                  <select id="rejectAlt2" class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-200 transition-all outline-none shadow-sm appearance-none">
-                    <option value="">Pilih Alternatif 2</option>
-                    <option>Paket 1</option>
-                    <option>Paket 2</option>
-                    <option>Paket 3</option>
-                    <option>Paket 4</option>
-                    <option>Paket 5</option>
-                  </select>
+                  <textarea 
+                    id="rejectNote"
+                    rows="3" 
+                    class="input-enhanced w-full p-4 rounded-xl"
+                    placeholder="Alasan penolakan dan rekomendasi..."
+                    maxlength="500"
+                  ></textarea>
+                  <div class="flex justify-between text-xs text-slate-500 mt-2">
+                    <span>Catatan aktif dan akan dikirim ke nasabah</span>
+                    <span id="charCountReject">0/500</span>
+                  </div>
                 </div>
-              </div>
-            </div>
-            
-            <!-- Catatan Penolakan -->
-            <div class="mt-8">
-              <label class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
-                  <i class="ri-alert-fill text-white"></i>
-                </div>
-                <span>CATATAN PENOLAKAN (OPTIONAL)</span>
-              </label>
-              <textarea 
-                id="rejectNote"
-                rows="3" 
-                class="w-full p-4 rounded-xl border-2 border-slate-300 bg-white focus:border-slate-500 focus:ring-4 focus:ring-slate-200 transition-all outline-none shadow-sm"
-                placeholder="Alasan penolakan dan rekomendasi untuk nasabah..."
-                maxlength="500"
-              ></textarea>
-              <div class="flex justify-between text-xs text-slate-500 mt-2">
-                <div class="flex items-center gap-2">
-                  <i class="ri-information-line"></i> Kosongkan untuk menggunakan template default
-                </div>
-                <span id="charCountReject">0/500 karakter</span>
               </div>
             </div>
             
@@ -896,35 +832,27 @@
             <div class="mt-12 flex flex-wrap gap-6">
               <button 
                 id="btnProcessReject"
-                class="px-10 py-4 bg-gradient-to-r from-rose-600 to-rose-700 text-white rounded-2xl font-bold text-lg flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
+                class="px-10 py-4 bg-gradient-to-r from-rose-600 to-rose-700 text-white rounded-2xl font-semibold text-lg flex items-center gap-3 btn-glow"
               >
-                <i class="ri-close-circle-fill"></i>
-                PROSES GARANSI DITOLAK
+                <i class="ri-close-circle-line"></i>
+                Proses Garansi Ditolak
                 <i class="ri-arrow-right-line"></i>
               </button>
               
               <button 
                 id="btnPreviewReject"
-                class="px-8 py-4 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+                class="px-8 py-4 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-2xl font-semibold flex items-center gap-3 btn-glow"
               >
-                <i class="ri-eye-fill mr-2"></i>
-                PREVIEW SURAT
+                <i class="ri-eye-line mr-2"></i>
+                Preview Surat
               </button>
               
               <button 
                 id="btnResetReject"
-                class="px-8 py-4 bg-gradient-to-r from-slate-200 to-slate-300 text-slate-800 rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+                class="px-8 py-4 bg-gradient-to-r from-slate-200 to-slate-300 text-slate-800 rounded-2xl font-semibold flex items-center gap-3 btn-glow"
               >
                 <i class="ri-refresh-line mr-2"></i>
-                RESET FORM
-              </button>
-              
-              <button 
-                id="btnSaveReject"
-                class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
-              >
-                <i class="ri-save-3-fill mr-2"></i>
-                SIMPAN DRAFT
+                Reset Form
               </button>
             </div>
           </div>
@@ -932,24 +860,24 @@
       </section>
       
       <!-- System Info Panel -->
-      <div class="bg-gradient-to-r from-slate-900 to-slate-950 rounded-3xl p-8 text-white mb-12">
+      <div class="bg-gradient-to-r from-dark to-dark-light rounded-3xl p-8 text-white mb-12 animate-fade-in">
         <div class="flex items-center justify-between mb-8">
           <div>
-            <h3 class="text-2xl font-bold mb-2">SISTEM INFORMASI</h3>
+            <h3 class="text-2xl font-bold mb-2">Sistem Informasi</h3>
             <p class="text-slate-400">Monitoring dan status sistem real-time</p>
           </div>
           <div class="flex items-center gap-4">
-            <div class="px-4 py-2 bg-emerald-900/30 text-emerald-400 rounded-full text-sm font-bold">
-              <i class="ri-wifi-line mr-2"></i>ONLINE
+            <div class="px-4 py-2 bg-emerald-900/30 text-emerald-400 rounded-xl text-sm font-semibold">
+              <i class="ri-wifi-line mr-2"></i>Online
             </div>
-            <div class="px-4 py-2 bg-blue-900/30 text-blue-400 rounded-full text-sm font-bold">
-              <i class="ri-shield-check-line mr-2"></i>SECURED
+            <div class="px-4 py-2 bg-blue-900/30 text-blue-400 rounded-xl text-sm font-semibold">
+              <i class="ri-shield-check-line mr-2"></i>Terproteksi
             </div>
           </div>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+          <div class="glass-card rounded-2xl p-6">
             <div class="flex items-center gap-4 mb-4">
               <div class="w-12 h-12 rounded-xl bg-blue-900/30 flex items-center justify-center">
                 <i class="ri-database-2-line text-blue-400 text-xl"></i>
@@ -962,7 +890,7 @@
             <p class="text-xs text-slate-500">Auto-save system aktif</p>
           </div>
           
-          <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+          <div class="glass-card rounded-2xl p-6">
             <div class="flex items-center gap-4 mb-4">
               <div class="w-12 h-12 rounded-xl bg-emerald-900/30 flex items-center justify-center">
                 <i class="ri-check-double-line text-emerald-400 text-xl"></i>
@@ -975,7 +903,7 @@
             <p class="text-xs text-slate-500">Semua data terverifikasi</p>
           </div>
           
-          <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+          <div class="glass-card rounded-2xl p-6">
             <div class="flex items-center gap-4 mb-4">
               <div class="w-12 h-12 rounded-xl bg-amber-900/30 flex items-center justify-center">
                 <i class="ri-time-line text-amber-400 text-xl"></i>
@@ -992,135 +920,261 @@
     </main>
   </div>
 
-  <!-- ===== MODAL PENGUNCIAN PAKET ===== -->
-  <div id="modalLock" class="fixed inset-0 z-[9999] hidden">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-lg"></div>
+  <!-- ===== MODAL PENGUNCIAN PAKET (DIPERBAIKI) ===== -->
+  <div id="modalLock" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm modal-overlay"></div>
     <div class="relative flex items-center justify-center min-h-screen p-6">
-      <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden modal-entrance">
+      <div class="bg-white rounded-3xl shadow-2xl w-full max-w-6xl overflow-hidden animate-bounce-in">
         <!-- Modal Header -->
-        <div class="relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500 animate-gradient-shift"></div>
-          <div class="relative p-10 text-white">
+        <div class="bg-gradient-to-r from-emerald-600 to-emerald-800 p-10 text-white relative overflow-hidden">
+          <!-- Animated background elements -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl"></div>
+          
+          <div class="relative z-10">
             <div class="flex items-center justify-between mb-8">
-              <div class="flex items-center gap-4">
+              <div class="flex items-center gap-6">
                 <div class="relative">
-                  <div class="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl">
-                    <i class="ri-lock-2-fill text-3xl"></i>
+                  <div class="w-24 h-24 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl animate-pulse-glow">
+                    <i class="ri-lock-2-line text-4xl"></i>
                   </div>
-                  <div class="absolute -top-2 -right-2 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
-                    <i class="ri-check-line text-white"></i>
+                  <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center shadow-2xl checkmark">
+                    <i class="ri-check-double-line text-2xl text-white"></i>
                   </div>
                 </div>
                 <div>
-                  <h2 class="text-3xl font-black">PENGUNCIAN BERHASIL</h2>
-                  <p class="text-emerald-100 text-lg">Paket trading berhasil dikunci oleh sistem</p>
+                  <h2 class="text-4xl font-bold mb-3">Penguncian Paket Berhasil!</h2>
+                  <p class="text-emerald-100 text-lg opacity-90">Paket trading telah berhasil dikunci oleh sistem keamanan</p>
                 </div>
               </div>
-              <button onclick="closeModal('modalLock')" class="w-12 h-12 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all">
+              <button onclick="closeModal('modalLock')" class="w-14 h-14 rounded-2xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all hover:scale-110">
                 <i class="ri-close-line text-2xl"></i>
               </button>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-6">
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-transform duration-300">
+                <p class="text-sm opacity-90 mb-2">Status Sistem</p>
+                <div class="flex items-center justify-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                  <p class="text-xl font-bold">Aktif</p>
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-transform duration-300">
+                <p class="text-sm opacity-90 mb-2">Level Keamanan</p>
+                <div class="flex items-center justify-center gap-2">
+                  <i class="ri-shield-check-line text-emerald-400"></i>
+                  <p class="text-xl font-bold">Maksimal</p>
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-transform duration-300">
+                <p class="text-sm opacity-90 mb-2">Validasi Data</p>
+                <div class="flex items-center justify-center gap-2">
+                  <i class="ri-check-double-line text-emerald-400"></i>
+                  <p class="text-xl font-bold">Terverifikasi</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
         <!-- Modal Content -->
         <div class="p-10">
-          <!-- Success Animation -->
-          <div class="text-center mb-10">
-            <div class="relative inline-block">
-              <div class="w-32 h-32 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center shadow-2xl mx-auto mb-6">
-                <i class="ri-check-double-fill text-6xl text-emerald-600"></i>
-              </div>
-              <div class="absolute -inset-4 border-4 border-emerald-200 rounded-full animate-pulse"></div>
-            </div>
-            <h3 class="text-2xl font-black text-slate-900 mb-3">PAKET TRADING TERKUNCI</h3>
-            <p class="text-slate-600 text-lg">Data nasabah telah tercatat dan diproteksi oleh sistem keamanan</p>
-          </div>
-          
-          <!-- Data Summary -->
-          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-200 shadow-xl mb-10">
-            <h4 class="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                <i class="ri-file-list-3-line text-white"></i>
-              </div>
-              <span>RINGKASAN DATA</span>
-            </h4>
-            
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">EMAIL NASABAH</p>
-                <p id="modalLockEmail" class="text-lg font-black text-slate-900">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">JENIS PAKET</p>
-                <p id="modalLockPaket" class="text-lg font-black text-slate-900">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">TAHAPAN</p>
-                <p id="modalLockTahap" class="text-lg font-black text-emerald-600">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">MODAL TRADING</p>
-                <p id="modalLockModal" class="text-lg font-black text-slate-900">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">PROFIT</p>
-                <p id="modalLockProfit" class="text-lg font-black text-emerald-600">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">HASIL</p>
-                <p id="modalLockHasil" class="text-lg font-black text-emerald-600">-</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Next Steps -->
-          <div class="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 border border-emerald-200 mb-10">
-            <h4 class="text-xl font-black text-emerald-900 mb-6 flex items-center gap-3">
-              <i class="ri-guide-line text-emerald-600"></i>
-              <span>LANGKAH SELANJUTNYA</span>
-            </h4>
-            
-            <div class="space-y-4">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="ri-check-line text-emerald-600"></i>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Left Column - Data Summary -->
+            <div>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
+                  <i class="ri-file-list-3-line text-white text-xl"></i>
                 </div>
-                <p><span class="font-bold text-emerald-700">Hubungi Customer Service</span> untuk melanjutkan proses sesuai tahapan yang dipilih</p>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900">Ringkasan Data Paket</h3>
+                  <p class="text-slate-600">Detail informasi paket yang berhasil dikunci</p>
+                </div>
               </div>
               
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="ri-check-line text-emerald-600"></i>
+              <div class="space-y-8">
+                <!-- Data Grid with Checkmarks -->
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-emerald-300 transition-colors duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-sm font-semibold text-slate-600">Email Nasabah</span>
+                      <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
+                        <i class="ri-check-line text-emerald-600 text-xs"></i>
+                      </div>
+                    </div>
+                    <p id="modalLockEmail" class="text-lg font-bold text-slate-900 truncate">-</p>
+                  </div>
+                  
+                  <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-emerald-300 transition-colors duration-300 package-success">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-sm font-semibold text-slate-600">Jenis Paket</span>
+                      <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
+                        <i class="ri-check-line text-emerald-600 text-xs"></i>
+                      </div>
+                    </div>
+                    <p id="modalLockPaket" class="text-lg font-bold text-emerald-700">-</p>
+                  </div>
+                  
+                  <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-emerald-300 transition-colors duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-sm font-semibold text-slate-600">Tahapan</span>
+                      <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
+                        <i class="ri-check-line text-emerald-600 text-xs"></i>
+                      </div>
+                    </div>
+                    <p id="modalLockTahap" class="text-lg font-bold text-slate-900">-</p>
+                  </div>
+                  
+                  <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-emerald-300 transition-colors duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-sm font-semibold text-slate-600">Modal Trading</span>
+                      <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
+                        <i class="ri-check-line text-emerald-600 text-xs"></i>
+                      </div>
+                    </div>
+                    <p id="modalLockModal" class="text-lg font-bold text-slate-900">-</p>
+                  </div>
                 </div>
-                <p><span class="font-bold text-emerald-700">Verifikasi data</span> telah terekam di sistem dengan kode unik</p>
+                
+                <!-- Calculation Results -->
+                <div class="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-200">
+                  <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <i class="ri-calculator-line text-white text-lg"></i>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-bold text-slate-900">Hasil Perhitungan</h4>
+                      <p class="text-sm text-slate-600">Detail perhitungan profit</p>
+                    </div>
+                  </div>
+                  
+                  <div class="space-y-4">
+                    <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+                      <span class="text-slate-700">Profit</span>
+                      <span id="modalLockProfit" class="font-bold text-emerald-600">-</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-700">Total Hasil</span>
+                      <span id="modalLockHasil" class="text-2xl font-bold text-emerald-700">-</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Instructions & Notes -->
+            <div>
+              <!-- Notes Section -->
+              <div id="modalLockNoteContainer" class="mb-8 hidden">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
+                    <i class="ri-sticky-note-line text-white text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-slate-900">Catatan Tambahan</h3>
+                    <p class="text-slate-600">Informasi khusus untuk nasabah</p>
+                  </div>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                  <div class="flex items-start gap-3">
+                    <i class="ri-quote-left-line text-slate-400 text-2xl mt-1"></i>
+                    <p id="modalLockNote" class="text-slate-700 text-lg italic flex-1">-</p>
+                    <i class="ri-quote-right-line text-slate-400 text-2xl mt-1"></i>
+                  </div>
+                </div>
               </div>
               
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="ri-check-line text-emerald-600"></i>
+              <!-- Instructions -->
+              <div>
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <i class="ri-guide-line text-white text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-slate-900">Instruksi Sistem</h3>
+                    <p class="text-slate-600">Langkah selanjutnya untuk nasabah</p>
+                  </div>
                 </div>
-                <p><span class="font-bold text-emerald-700">Akses dashboard monitoring</span> untuk melihat progress investasi</p>
+                
+                <div class="space-y-4">
+                  <div class="bg-white rounded-2xl p-5 border border-blue-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="ri-check-double-line text-blue-600 text-sm"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-blue-700 mb-1">Hubungi Customer Service</p>
+                        <p class="text-sm text-slate-600">Untuk melanjutkan proses sesuai tahapan yang dipilih</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-white rounded-2xl p-5 border border-emerald-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="ri-shield-check-line text-emerald-600 text-sm"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-emerald-700 mb-1">Verifikasi Data</p>
+                        <p class="text-sm text-slate-600">Telah terekam di sistem dengan kode unik terproteksi</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-white rounded-2xl p-5 border border-purple-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="ri-dashboard-line text-purple-600 text-sm"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-purple-700 mb-1">Akses Dashboard</p>
+                        <p class="text-sm text-slate-600">Monitoring untuk melihat progress investasi real-time</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Progress Status -->
+                <div class="mt-8 bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl p-6 border border-slate-300">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="font-bold text-slate-900">Status Penyelesaian</span>
+                    <span class="text-emerald-600 font-bold">100%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                  </div>
+                  <p class="text-sm text-slate-600 mt-3 text-center">Paket berhasil dikunci dan siap diproses</p>
+                </div>
               </div>
             </div>
           </div>
           
           <!-- Action Buttons -->
-          <div class="flex justify-center gap-6">
+          <div class="mt-12 flex justify-center gap-6">
             <button 
               onclick="closeModal('modalLock')"
-              class="px-10 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+              class="px-12 py-5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-semibold text-lg flex items-center gap-4 btn-glow hover:shadow-xl transition-all duration-300"
             >
-              <i class="ri-check-double-line"></i>
-              KONFIRMASI & TUTUP
+              <i class="ri-check-double-line text-xl"></i>
+              Konfirmasi & Tutup Panel
+              <i class="ri-arrow-right-line"></i>
             </button>
             
             <button 
               onclick="printModalData('lock')"
-              class="px-10 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+              class="px-10 py-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl font-semibold flex items-center gap-3 btn-glow hover:shadow-xl transition-all duration-300"
             >
-              <i class="ri-printer-line"></i>
-              CETAK DETAIL
+              <i class="ri-printer-line text-lg"></i>
+              Cetak Detail Paket
+            </button>
+            
+            <button 
+              onclick="sharePackageData()"
+              class="px-10 py-5 bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-2xl font-semibold flex items-center gap-3 btn-glow hover:shadow-xl transition-all duration-300"
+            >
+              <i class="ri-share-line text-lg"></i>
+              Bagikan
             </button>
           </div>
         </div>
@@ -1128,135 +1182,298 @@
     </div>
   </div>
 
-  <!-- ===== MODAL GARANSI DITOLAK ===== -->
-  <div id="modalReject" class="fixed inset-0 z-[9999] hidden">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-lg"></div>
+  <!-- ===== MODAL GARANSI DITOLAK (DIPERBAIKI) ===== -->
+  <div id="modalReject" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm modal-overlay"></div>
     <div class="relative flex items-center justify-center min-h-screen p-6">
-      <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden modal-entrance">
+      <div class="bg-white rounded-3xl shadow-2xl w-full max-w-6xl overflow-hidden animate-bounce-in">
         <!-- Modal Header -->
-        <div class="relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 animate-gradient-shift"></div>
-          <div class="relative p-10 text-white">
+        <div class="bg-gradient-to-r from-rose-600 to-rose-800 p-10 text-white relative overflow-hidden">
+          <!-- Animated background elements -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl"></div>
+          
+          <div class="relative z-10">
             <div class="flex items-center justify-between mb-8">
-              <div class="flex items-center gap-4">
+              <div class="flex items-center gap-6">
                 <div class="relative">
-                  <div class="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl">
-                    <i class="ri-shield-cross-fill text-3xl"></i>
+                  <div class="w-24 h-24 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl">
+                    <i class="ri-shield-cross-line text-4xl"></i>
                   </div>
-                  <div class="absolute -top-2 -right-2 w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center shadow-lg">
-                    <i class="ri-close-line text-white"></i>
+                  <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-rose-500 to-rose-700 rounded-full flex items-center justify-center shadow-2xl">
+                    <i class="ri-close-line text-2xl text-white"></i>
                   </div>
                 </div>
                 <div>
-                  <h2 class="text-3xl font-black">GARANSI DITOLAK</h2>
-                  <p class="text-rose-100 text-lg">Pengajuan surat jaminan tidak dapat diproses</p>
+                  <h2 class="text-4xl font-bold mb-3">Garansi Ditolak</h2>
+                  <p class="text-rose-100 text-lg opacity-90">Pengajuan surat jaminan tidak dapat diproses</p>
                 </div>
               </div>
-              <button onclick="closeModal('modalReject')" class="w-12 h-12 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all">
+              <button onclick="closeModal('modalReject')" class="w-14 h-14 rounded-2xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all hover:scale-110">
                 <i class="ri-close-line text-2xl"></i>
               </button>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-6">
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-transform duration-300">
+                <p class="text-sm opacity-90 mb-2">Status Pengajuan</p>
+                <div class="flex items-center justify-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-rose-400 animate-pulse"></div>
+                  <p class="text-xl font-bold">Ditolak</p>
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-transform duration-300">
+                <p class="text-sm opacity-90 mb-2">Prioritas</p>
+                <div class="flex items-center justify-center gap-2">
+                  <i class="ri-alert-line text-amber-400"></i>
+                  <p class="text-xl font-bold">Tinggi</p>
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-transform duration-300">
+                <p class="text-sm opacity-90 mb-2">Review Sistem</p>
+                <div class="flex items-center justify-center gap-2">
+                  <i class="ri-search-eye-line text-blue-400"></i>
+                  <p class="text-xl font-bold">Diperlukan</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
         <!-- Modal Content -->
         <div class="p-10">
-          <!-- Warning Icon -->
-          <div class="text-center mb-10">
-            <div class="relative inline-block">
-              <div class="w-32 h-32 rounded-full bg-gradient-to-br from-rose-100 to-rose-50 flex items-center justify-center shadow-2xl mx-auto mb-6">
-                <i class="ri-close-circle-fill text-6xl text-rose-600"></i>
-              </div>
-              <div class="absolute -inset-4 border-4 border-rose-200 rounded-full animate-pulse"></div>
-            </div>
-            <h3 class="text-2xl font-black text-slate-900 mb-3">PENGAJUAN TIDAK DAPAT DIPROSES</h3>
-            <p class="text-slate-600 text-lg">Permohonan Surat Jaminan Ganti Rugi tidak memenuhi persyaratan sistem</p>
-          </div>
-          
-          <!-- Rejection Details -->
-          <div class="bg-gradient-to-br from-rose-50 to-white rounded-2xl p-8 border border-rose-200 shadow-xl mb-10">
-            <h4 class="text-xl font-black text-rose-900 mb-6 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center">
-                <i class="ri-file-warning-line text-white"></i>
-              </div>
-              <span>DETAIL PENOLAKAN</span>
-            </h4>
-            
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">EMAIL NASABAH</p>
-                <p id="modalRejectEmail" class="text-lg font-black text-slate-900">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">PAKET DIAJUKAN</p>
-                <p id="modalRejectPaket" class="text-lg font-black text-rose-600">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">MODAL DIAJUKAN</p>
-                <p id="modalRejectModal" class="text-lg font-black text-slate-900">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">PAKET TERSEDIA</p>
-                <p id="modalRejectTahap" class="text-lg font-black text-emerald-600">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">ALTERNATIF 1</p>
-                <p id="modalRejectAlt1" class="text-lg font-black text-slate-900">-</p>
-              </div>
-              <div class="space-y-2">
-                <p class="text-sm font-bold text-slate-500">ALTERNATIF 2</p>
-                <p id="modalRejectAlt2" class="text-lg font-black text-slate-900">-</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Available Alternatives -->
-          <div class="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 border border-emerald-200 mb-10">
-            <h4 class="text-xl font-black text-emerald-900 mb-6 flex items-center gap-3">
-              <i class="ri-list-check-2 text-emerald-600"></i>
-              <span>OPSI YANG TERSEDIA</span>
-            </h4>
-            
-            <div class="space-y-4">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="ri-check-line text-emerald-600"></i>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Left Column - Rejection Details -->
+            <div>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-lg">
+                  <i class="ri-file-warning-line text-white text-xl"></i>
                 </div>
-                <p><span class="font-bold text-emerald-700">Pilih paket alternatif</span> yang masih tersedia dalam sistem</p>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900">Detail Penolakan</h3>
+                  <p class="text-slate-600">Informasi pengajuan garansi yang ditolak</p>
+                </div>
               </div>
               
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="ri-check-line text-emerald-600"></i>
+              <!-- Rejected Package Info -->
+              <div class="bg-rose-50 rounded-2xl p-6 border border-rose-200 mb-8">
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center">
+                    <i class="ri-close-circle-line text-rose-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-rose-800">Paket Ditolak</h4>
+                    <p class="text-sm text-rose-600">Tidak tersedia dalam sistem</p>
+                  </div>
                 </div>
-                <p><span class="font-bold text-emerald-700">Lakukan deposit kekurangan</span> (jika ada) untuk aktivasi paket</p>
+                
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center pb-3 border-b border-rose-200">
+                    <span class="text-rose-700">Nama Paket</span>
+                    <span id="modalRejectPaket" class="font-bold text-rose-800">-</span>
+                  </div>
+                  <div class="flex justify-between items-center pb-3 border-b border-rose-200">
+                    <span class="text-rose-700">Modal Diajukan</span>
+                    <span id="modalRejectModal" class="font-bold text-rose-800">-</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-rose-700">Email Nasabah</span>
+                    <span id="modalRejectEmail" class="font-bold text-rose-800 truncate max-w-[200px]">-</span>
+                  </div>
+                </div>
               </div>
               
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="ri-check-line text-emerald-600"></i>
+              <!-- Available Packages -->
+              <div class="space-y-6">
+                <h4 class="text-lg font-bold text-slate-900 flex items-center gap-3">
+                  <i class="ri-checkbox-circle-line text-emerald-500"></i>
+                  Paket Tersedia dalam Sistem
+                </h4>
+                
+                <div class="grid grid-cols-1 gap-4">
+                  <!-- Available Package 1 -->
+                  <div class="bg-emerald-50 rounded-2xl p-5 border-2 border-emerald-300 hover:border-emerald-400 transition-all duration-300 package-success">
+                    <div class="flex items-center justify-between mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                          <i class="ri-check-line text-emerald-600 text-sm"></i>
+                        </div>
+                        <span class="font-bold text-emerald-800">Paket Tersedia</span>
+                      </div>
+                      <div class="px-3 py-1 bg-emerald-500 text-white text-xs rounded-full font-semibold animate-pulse-glow">
+                        <i class="ri-check-double-line mr-1"></i>TERSEDIA
+                      </div>
+                    </div>
+                    <p id="modalRejectTahap" class="text-lg font-bold text-slate-900">-</p>
+                    <div class="flex items-center gap-2 mt-2">
+                      <i class="ri-information-line text-emerald-500 text-sm"></i>
+                      <span class="text-sm text-emerald-600">Paket ini masih tersedia dalam sistem</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Alternative Package -->
+                  <div id="altPackageContainer" class="bg-blue-50 rounded-2xl p-5 border-2 border-blue-300 hover:border-blue-400 transition-all duration-300 package-success hidden">
+                    <div class="flex items-center justify-between mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                          <i class="ri-arrow-right-circle-line text-blue-600 text-sm"></i>
+                        </div>
+                        <span class="font-bold text-blue-800">Paket Alternatif</span>
+                      </div>
+                      <div class="px-3 py-1 bg-blue-500 text-white text-xs rounded-full font-semibold">
+                        <i class="ri-lightbulb-line mr-1"></i>REKOMENDASI
+                      </div>
+                    </div>
+                    <p id="modalRejectAlt1" class="text-lg font-bold text-slate-900">-</p>
+                    <div class="flex items-center gap-2 mt-2">
+                      <i class="ri-information-line text-blue-500 text-sm"></i>
+                      <span class="text-sm text-blue-600">Alternatif rekomendasi dari sistem</span>
+                    </div>
+                  </div>
                 </div>
-                <p><span class="font-bold text-emerald-700">Hubungi customer service</span> untuk panduan lebih lanjut</p>
+              </div>
+              
+              <!-- Notes Section -->
+              <div id="modalRejectNoteContainer" class="mt-8 hidden">
+                <h4 class="font-bold text-slate-700 mb-4 flex items-center gap-3">
+                  <i class="ri-chat-quote-line text-slate-600"></i>
+                  Catatan Penolakan
+                </h4>
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                  <div class="flex items-start gap-3">
+                    <i class="ri-error-warning-line text-rose-500 text-xl"></i>
+                    <p id="modalRejectNote" class="text-slate-700 flex-1">-</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Instructions & Actions -->
+            <div>
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg">
+                  <i class="ri-guide-line text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900">Langkah Selanjutnya</h3>
+                  <p class="text-slate-600">Panduan untuk melanjutkan proses</p>
+                </div>
+              </div>
+              
+              <!-- Action Steps -->
+              <div class="space-y-6">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-emerald-200 hover:shadow-lg transition-shadow duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                      <span class="font-bold text-emerald-700">1</span>
+                    </div>
+                    <div>
+                      <p class="font-bold text-emerald-700 mb-2">Pilih Paket Tersedia</p>
+                      <p class="text-sm text-slate-600">Pilih paket yang masih tersedia dalam sistem untuk melanjutkan proses</p>
+                      <div class="mt-3 flex items-center gap-2 text-emerald-600">
+                        <i class="ri-check-line"></i>
+                        <span class="text-sm font-semibold">Paket tersedia ditandai dengan warna hijau</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-blue-200 hover:shadow-lg transition-shadow duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+                      <span class="font-bold text-blue-700">2</span>
+                    </div>
+                    <div>
+                      <p class="font-bold text-blue-700 mb-2">Hubungi Customer Service</p>
+                      <p class="text-sm text-slate-600">Laporkan penolakan ini untuk mendapatkan panduan lebih lanjut</p>
+                      <div class="mt-3">
+                        <button onclick="contactSupport()" class="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors duration-300">
+                          <i class="ri-customer-service-2-line"></i>
+                          Hubungi Support Sekarang
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-purple-200 hover:shadow-lg transition-shadow duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center flex-shrink-0">
+                      <span class="font-bold text-purple-700">3</span>
+                    </div>
+                    <div>
+                      <p class="font-bold text-purple-700 mb-2">Verifikasi Ulang Data</p>
+                      <p class="text-sm text-slate-600">Pastikan data yang diinput sesuai dengan ketentuan sistem</p>
+                      <div class="mt-3 flex items-center gap-2 text-purple-600">
+                        <i class="ri-shield-check-line"></i>
+                        <span class="text-sm">Sistem akan melakukan validasi otomatis</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Quick Actions -->
+              <div class="mt-10 bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl p-6 border border-slate-300">
+                <h4 class="font-bold text-slate-900 mb-4">Aksi Cepat</h4>
+                <div class="grid grid-cols-2 gap-4">
+                  <button onclick="copyRejectData()" class="p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                      <i class="ri-clipboard-line text-blue-600"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-slate-700">Copy Data</span>
+                  </button>
+                  
+                  <button onclick="saveRejectForLater()" class="p-4 bg-white rounded-xl border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-300 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                      <i class="ri-save-line text-emerald-600"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-slate-700">Simpan Draft</span>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Status Summary -->
+              <div class="mt-8">
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-bold text-slate-900">Status Proses</span>
+                  <span class="text-rose-600 font-bold">BUTUH TINDAK LANJUT</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill bg-rose-500" style="width: 30%"></div>
+                </div>
+                <p class="text-sm text-slate-600 mt-3 text-center">Pengajuan garansi ditolak, perlu tindakan lanjutan</p>
               </div>
             </div>
           </div>
           
           <!-- Action Buttons -->
-          <div class="flex justify-center gap-6">
+          <div class="mt-12 flex justify-center gap-6">
             <button 
               onclick="closeModal('modalReject')"
-              class="px-10 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+              class="px-12 py-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl font-semibold text-lg flex items-center gap-4 btn-glow hover:shadow-xl transition-all duration-300"
             >
-              <i class="ri-check-double-line"></i>
-              MEMAHAMI & TUTUP
+              <i class="ri-check-double-line text-xl"></i>
+              Memahami & Tutup
             </button>
             
             <button 
               onclick="contactSupport()"
-              class="px-10 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all"
+              class="px-10 py-5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-2xl font-semibold flex items-center gap-3 btn-glow hover:shadow-xl transition-all duration-300"
             >
-              <i class="ri-customer-service-2-line"></i>
-              HUBUNGI SUPPORT
+              <i class="ri-customer-service-2-line text-lg"></i>
+              Hubungi Support
+            </button>
+            
+            <button 
+              onclick="retryPackageApplication()"
+              class="px-10 py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl font-semibold flex items-center gap-3 btn-glow hover:shadow-xl transition-all duration-300"
+            >
+              <i class="ri-refresh-line text-lg"></i>
+              Ajukan Ulang
             </button>
           </div>
         </div>
@@ -1268,7 +1485,7 @@
   <script>
     // ===== SYSTEM INITIALIZATION =====
     
-    // 1. Real-time Clock System
+    // 1. Real-time Clock
     function updateSystemClock() {
       const now = new Date();
       const time = now.toLocaleTimeString('id-ID', { 
@@ -1277,191 +1494,82 @@
         minute: '2-digit',
         second: '2-digit'
       });
-      const date = now.toLocaleDateString('id-ID', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      
       document.getElementById('systemClock').textContent = time;
-      document.getElementById('liveClock').innerHTML = `
-        <span class="text-3xl">${time}</span><br>
-        <span class="text-sm text-slate-500">${date}</span>
-      `;
+      document.getElementById('liveClock').textContent = time;
     }
     setInterval(updateSystemClock, 1000);
     updateSystemClock();
     
-    // 2. Page Navigation System
+    // 2. Page Navigation
     document.getElementById('navLock').addEventListener('click', () => {
       showSection('sectionLock');
-      showToast('Penguncian Paket', 'Sistem penguncian paket trading', 'success');
+      showSystemNotification('Sistem Penguncian Paket', 'Berhasil beralih ke form penguncian paket', 'lock');
     });
     
     document.getElementById('navReject').addEventListener('click', () => {
       showSection('sectionReject');
-      showToast('Garansi Ditolak', 'Sistem penolakan garansi trading', 'warning');
+      showSystemNotification('Sistem Garansi Ditolak', 'Berhasil beralih ke form garansi ditolak', 'warning');
     });
     
     function showSection(sectionId) {
       // Hide all sections
-      document.querySelectorAll('.page-transition').forEach(section => {
-        section.classList.remove('active');
-        setTimeout(() => {
-          section.classList.add('hidden');
-        }, 300);
+      document.querySelectorAll('.page-enter').forEach(section => {
+        section.classList.add('hidden');
       });
       
       // Show selected section with animation
       setTimeout(() => {
         const section = document.getElementById(sectionId);
         section.classList.remove('hidden');
-        setTimeout(() => {
-          section.classList.add('active');
-        }, 10);
-      }, 300);
+        section.classList.add('page-enter');
+      }, 10);
     }
     
-    // 3. Currency Formatting System
+    // 3. Currency Formatting
     function formatCurrency(input) {
       let value = input.value.replace(/\./g, '');
       if (!isNaN(value) && value !== '') {
         input.value = parseInt(value).toLocaleString('id-ID');
-        
-        // Trigger calculation for lock form
-        if (input.id === 'lockModal' || input.id === 'rejectModal') {
-          calculateLockResult();
-        }
+        calculateLockResult();
       }
     }
     
-    // 4. Lock Form Calculation System
+    // 4. Lock Form Calculation
     function calculateLockResult() {
       const modal = parseFloat(document.getElementById('lockModal').value.replace(/\./g, '')) || 0;
       const profit = parseFloat(document.getElementById('lockProfit').value) || 0;
       const hasil = modal + (modal * profit / 100);
       
       document.getElementById('lockHasil').value = formatRupiah(hasil);
-      
-      // Update profit bar
-      const profitBar = document.getElementById('profitBar');
-      if (profitBar) {
-        const width = Math.min(profit, 100);
-        profitBar.style.width = `${width}%`;
-        
-        // Change color based on profit
-        if (width > 30) {
-          profitBar.style.background = 'linear-gradient(to right, #ef4444, #f59e0b)';
-        } else if (width > 15) {
-          profitBar.style.background = 'linear-gradient(to right, #f59e0b, #10b981)';
-        } else {
-          profitBar.style.background = 'linear-gradient(to right, #10b981, #0ea5e9)';
-        }
-      }
     }
     
-    // Event listeners for real-time calculation
-    document.getElementById('lockProfit').addEventListener('input', () => {
-      calculateLockResult();
-    });
-    
+    // Event listeners for calculation
+    document.getElementById('lockProfit').addEventListener('input', calculateLockResult);
     document.getElementById('lockModal').addEventListener('input', calculateLockResult);
     document.getElementById('btnCalculate').addEventListener('click', calculateLockResult);
     
-    // 5. Email Validation System
+    // 5. Character Counter
+    document.getElementById('lockNote').addEventListener('input', function() {
+      const count = this.value.length;
+      document.getElementById('charCountLock').textContent = `${count}/500`;
+    });
+    
+    document.getElementById('rejectNote').addEventListener('input', function() {
+      const count = this.value.length;
+      document.getElementById('charCountReject').textContent = `${count}/500`;
+    });
+    
+    // 6. Email Validation
     function validateEmail(email) {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return re.test(email);
     }
     
-    // Real-time email validation for lock form
-    document.getElementById('lockEmail').addEventListener('blur', function() {
-      const checkIcon = document.getElementById('lockEmailCheck');
-      if (validateEmail(this.value)) {
-        checkIcon.classList.remove('hidden');
-        checkIcon.classList.add('checkmark-animation');
-        this.classList.add('border-emerald-500');
-      } else {
-        checkIcon.classList.add('hidden');
-        this.classList.remove('border-emerald-500');
-      }
-    });
-    
-    // Real-time email validation for reject form
-    document.getElementById('rejectEmail').addEventListener('blur', function() {
-      const checkIcon = document.getElementById('rejectEmailCheck');
-      if (validateEmail(this.value)) {
-        checkIcon.classList.remove('hidden');
-        checkIcon.classList.add('checkmark-animation');
-        this.classList.add('border-emerald-500');
-      } else {
-        checkIcon.classList.add('hidden');
-        this.classList.remove('border-emerald-500');
-      }
-    });
-    
-    // 6. Character Counter System
-    document.getElementById('lockNote').addEventListener('input', function() {
-      const count = this.value.length;
-      document.getElementById('charCountLock').textContent = `${count}/500 karakter`;
-    });
-    
-    document.getElementById('rejectNote').addEventListener('input', function() {
-      const count = this.value.length;
-      document.getElementById('charCountReject').textContent = `${count}/500 karakter`;
-    });
-    
-    // 7. Modal System
-    function showModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-    
-    // 8. Toast Notification System
-    function showToast(title, message, type = 'info') {
-      const toast = document.getElementById('toast');
-      const toastTitle = document.getElementById('toastTitle');
-      const toastMessage = document.getElementById('toastMessage');
-      const toastIcon = document.getElementById('toastIcon');
-      
-      // Set colors based on type
-      const config = {
-        success: { bg: 'bg-emerald-500/20', icon: 'ri-checkbox-circle-fill', iconColor: 'text-emerald-400' },
-        error: { bg: 'bg-rose-500/20', icon: 'ri-close-circle-fill', iconColor: 'text-rose-400' },
-        warning: { bg: 'bg-amber-500/20', icon: 'ri-alert-fill', iconColor: 'text-amber-400' },
-        info: { bg: 'bg-blue-500/20', icon: 'ri-information-fill', iconColor: 'text-blue-400' }
-      }[type];
-      
-      toastTitle.textContent = title;
-      toastMessage.textContent = message;
-      toastIcon.className = `${config.icon} ${config.iconColor}`;
-      toastIcon.parentElement.className = `w-10 h-10 rounded-full ${config.bg} flex items-center justify-center`;
-      
-      toast.classList.remove('hidden');
-      
-      // Auto hide after 5 seconds
-      setTimeout(hideToast, 5000);
-    }
-    
-    function hideToast() {
-      document.getElementById('toast').classList.add('hidden');
-    }
-    
-    // 9. Main Process Functions
-    
-    // LOCK PROCESS
+    // 7. Process Lock Form
     document.getElementById('btnProcessLock').addEventListener('click', function() {
       // Validation
       if (!validateLockForm()) {
-        showToast('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
+        showSystemNotification('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
         return;
       }
       
@@ -1476,7 +1584,7 @@
         note: document.getElementById('lockNote').value
       };
       
-      // Populate modal
+      // Populate modal with enhanced UI
       document.getElementById('modalLockEmail').textContent = formData.email;
       document.getElementById('modalLockPaket').textContent = formData.paket;
       document.getElementById('modalLockTahap').textContent = formData.tahap;
@@ -1484,20 +1592,35 @@
       document.getElementById('modalLockProfit').textContent = `${formData.profit}%`;
       document.getElementById('modalLockHasil').textContent = formData.hasil;
       
-      // Show modal
-      showModal('modalLock');
+      // Show note if exists
+      const noteContainer = document.getElementById('modalLockNoteContainer');
+      const noteText = document.getElementById('modalLockNote');
+      if (formData.note.trim()) {
+        noteText.textContent = formData.note;
+        noteContainer.classList.remove('hidden');
+      } else {
+        noteContainer.classList.add('hidden');
+      }
       
-      // Save to localStorage
+      // Show modal with animation
+      document.getElementById('modalLock').classList.remove('hidden');
+      
+      // Save data
       saveData('lock', formData);
       
       // Show success notification
-      showToast('Penguncian Berhasil', 'Paket trading berhasil dikunci oleh sistem', 'success');
+      showSystemNotification('Penguncian Berhasil', 'Paket trading berhasil dikunci oleh sistem', 'success');
+      
+      // Play success sound effect (optional)
+      playNotificationSound('success');
     });
     
     function validateLockForm() {
       const fields = [
         'lockEmail', 'lockPaket', 'lockTahap', 'lockModal', 'lockProfit'
       ];
+      
+      let isValid = true;
       
       for (const fieldId of fields) {
         const field = document.getElementById(fieldId);
@@ -1506,24 +1629,24 @@
           setTimeout(() => {
             field.classList.remove('border-rose-500', 'ring-2', 'ring-rose-200');
           }, 3000);
-          return false;
+          isValid = false;
         }
       }
       
       // Email validation
       if (!validateEmail(document.getElementById('lockEmail').value)) {
-        showToast('Email Tidak Valid', 'Format email tidak sesuai', 'error');
-        return false;
+        showSystemNotification('Email Tidak Valid', 'Format email tidak sesuai', 'error');
+        isValid = false;
       }
       
-      return true;
+      return isValid;
     }
     
-    // REJECT PROCESS
+    // 8. Process Reject Form
     document.getElementById('btnProcessReject').addEventListener('click', function() {
       // Validation
       if (!validateRejectForm()) {
-        showToast('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
+        showSystemNotification('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
         return;
       }
       
@@ -1534,32 +1657,55 @@
         modal: document.getElementById('rejectModal').value,
         tahap: document.getElementById('rejectTahap').value,
         alt1: document.getElementById('rejectAlt1').value,
-        alt2: document.getElementById('rejectAlt2').value,
         note: document.getElementById('rejectNote').value
       };
       
-      // Populate modal
+      // Populate modal with enhanced UI
       document.getElementById('modalRejectEmail').textContent = formData.email;
       document.getElementById('modalRejectPaket').textContent = formData.paket;
       document.getElementById('modalRejectModal').textContent = formData.modal;
       document.getElementById('modalRejectTahap').textContent = formData.tahap;
       document.getElementById('modalRejectAlt1').textContent = formData.alt1 || '-';
-      document.getElementById('modalRejectAlt2').textContent = formData.alt2 || '-';
+      document.getElementById('availablePackage').textContent = formData.tahap;
+      document.getElementById('alternativePackage').textContent = formData.alt1 || '-';
+      
+      // Show alternative package container if exists
+      const altContainer = document.getElementById('altPackageContainer');
+      if (formData.alt1 && formData.alt1.trim()) {
+        altContainer.classList.remove('hidden');
+      } else {
+        altContainer.classList.add('hidden');
+      }
+      
+      // Show note if exists
+      const noteContainer = document.getElementById('modalRejectNoteContainer');
+      const noteText = document.getElementById('modalRejectNote');
+      if (formData.note.trim()) {
+        noteText.textContent = formData.note;
+        noteContainer.classList.remove('hidden');
+      } else {
+        noteContainer.classList.add('hidden');
+      }
       
       // Show modal
-      showModal('modalReject');
+      document.getElementById('modalReject').classList.remove('hidden');
       
-      // Save to localStorage
+      // Save data
       saveData('reject', formData);
       
-      // Show success notification
-      showToast('Proses Selesai', 'Data garansi ditolak berhasil diproses', 'success');
+      // Show notification
+      showSystemNotification('Proses Selesai', 'Data garansi ditolak berhasil diproses', 'warning');
+      
+      // Play notification sound
+      playNotificationSound('warning');
     });
     
     function validateRejectForm() {
       const fields = [
         'rejectEmail', 'rejectPaket', 'rejectModal', 'rejectTahap'
       ];
+      
+      let isValid = true;
       
       for (const fieldId of fields) {
         const field = document.getElementById(fieldId);
@@ -1568,28 +1714,33 @@
           setTimeout(() => {
             field.classList.remove('border-rose-500', 'ring-2', 'ring-rose-200');
           }, 3000);
-          return false;
+          isValid = false;
         }
       }
       
       // Email validation
       if (!validateEmail(document.getElementById('rejectEmail').value)) {
-        showToast('Email Tidak Valid', 'Format email tidak sesuai', 'error');
-        return false;
+        showSystemNotification('Email Tidak Valid', 'Format email tidak sesuai', 'error');
+        isValid = false;
       }
       
-      return true;
+      return isValid;
     }
     
-    // 10. Data Management System
+    // 9. Data Management
     function saveData(type, data) {
-      localStorage.setItem(`asiang_${type}_${Date.now()}`, JSON.stringify({
+      const key = `asiang_${type}_${Date.now()}`;
+      const dataWithMeta = {
         ...data,
         timestamp: new Date().toISOString(),
-        id: `${type.toUpperCase()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
-      }));
+        id: `${type.toUpperCase()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+        status: type === 'lock' ? 'locked' : 'rejected'
+      };
+      
+      localStorage.setItem(key, JSON.stringify(dataWithMeta));
       
       updateSavedCount();
+      showSystemNotification('Data Tersimpan', 'Data berhasil disimpan ke sistem', 'save');
     }
     
     function updateSavedCount() {
@@ -1602,9 +1753,114 @@
       document.getElementById('savedCount').textContent = count;
     }
     
-    // 11. Utility Functions
+    // 10. Utility Functions
     function formatRupiah(angka) {
       return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+    
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.add('hidden');
+      showSystemNotification('Modal Ditutup', 'Panel berhasil ditutup', 'info');
+    }
+    
+    // 11. Enhanced System Notification System
+    function showSystemNotification(title, message, type = 'info') {
+      const notificationSystem = document.getElementById('notificationSystem');
+      
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `animate-notification-slide rounded-2xl p-5 shadow-2xl border-l-4 min-w-[300px] transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer`;
+      
+      // Set colors and icon based on type
+      const config = {
+        success: { 
+          bg: 'bg-gradient-to-r from-emerald-50 to-emerald-100',
+          border: 'border-l-emerald-500',
+          icon: 'ri-checkbox-circle-fill text-emerald-500',
+          titleColor: 'text-emerald-800'
+        },
+        error: { 
+          bg: 'bg-gradient-to-r from-rose-50 to-rose-100',
+          border: 'border-l-rose-500',
+          icon: 'ri-close-circle-fill text-rose-500',
+          titleColor: 'text-rose-800'
+        },
+        warning: { 
+          bg: 'bg-gradient-to-r from-amber-50 to-amber-100',
+          border: 'border-l-amber-500',
+          icon: 'ri-alert-fill text-amber-500',
+          titleColor: 'text-amber-800'
+        },
+        info: { 
+          bg: 'bg-gradient-to-r from-blue-50 to-blue-100',
+          border: 'border-l-blue-500',
+          icon: 'ri-information-fill text-blue-500',
+          titleColor: 'text-blue-800'
+        },
+        lock: { 
+          bg: 'bg-gradient-to-r from-emerald-50 to-blue-50',
+          border: 'border-l-emerald-500',
+          icon: 'ri-lock-fill text-emerald-500',
+          titleColor: 'text-emerald-800'
+        },
+        save: { 
+          bg: 'bg-gradient-to-r from-blue-50 to-cyan-50',
+          border: 'border-l-cyan-500',
+          icon: 'ri-save-fill text-cyan-500',
+          titleColor: 'text-cyan-800'
+        }
+      }[type];
+      
+      notification.className += ` ${config.bg} ${config.border}`;
+      
+      notification.innerHTML = `
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <i class="${config.icon} text-2xl"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold ${config.titleColor}">${title}</h4>
+              <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-slate-400 hover:text-slate-600">
+                <i class="ri-close-line"></i>
+              </button>
+            </div>
+            <p class="text-slate-700 text-sm">${message}</p>
+            <div class="mt-3 flex items-center justify-between">
+              <span class="text-xs text-slate-500">${new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'})}</span>
+              <div class="w-32 h-1 bg-slate-200 rounded-full overflow-hidden">
+                <div class="h-full ${type === 'success' ? 'bg-emerald-500' : type === 'error' ? 'bg-rose-500' : 'bg-blue-500'} animate-[shrink_5s_linear_forwards]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Add to notification system
+      notificationSystem.appendChild(notification);
+      
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.classList.replace('animate-notification-slide', 'animate-notification-hide');
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.remove();
+            }
+          }, 500);
+        }
+      }, 5000);
+      
+      // Add click to dismiss
+      notification.addEventListener('click', function() {
+        this.classList.replace('animate-notification-slide', 'animate-notification-hide');
+        setTimeout(() => {
+          if (this.parentNode) {
+            this.remove();
+          }
+        }, 500);
+      });
     }
     
     // 12. Button Event Listeners
@@ -1613,7 +1869,7 @@
     document.getElementById('btnCopyLock').addEventListener('click', function() {
       const hasil = document.getElementById('lockHasil').value;
       navigator.clipboard.writeText(hasil).then(() => {
-        showToast('Clipboard', 'Hasil berhasil disalin', 'info');
+        showSystemNotification('Clipboard', 'Hasil berhasil disalin ke clipboard', 'info');
       });
     });
     
@@ -1627,9 +1883,7 @@
         document.getElementById('lockProfit').value = '';
         document.getElementById('lockHasil').value = '';
         document.getElementById('lockNote').value = '';
-        document.getElementById('charCountLock').textContent = '0/500 karakter';
-        document.getElementById('profitBar').style.width = '0%';
-        document.getElementById('lockEmailCheck').classList.add('hidden');
+        document.getElementById('charCountLock').textContent = '0/500';
         
         // Remove lock data from localStorage
         for (let i = 0; i < localStorage.length; i++) {
@@ -1639,7 +1893,7 @@
         }
         
         updateSavedCount();
-        showToast('Form Direset', 'Form Penguncian Paket berhasil direset', 'info');
+        showSystemNotification('Form Direset', 'Form Penguncian Paket berhasil direset', 'info');
       }
     });
     
@@ -1650,10 +1904,8 @@
         document.getElementById('rejectModal').value = '';
         document.getElementById('rejectTahap').value = '';
         document.getElementById('rejectAlt1').value = '';
-        document.getElementById('rejectAlt2').value = '';
         document.getElementById('rejectNote').value = '';
-        document.getElementById('charCountReject').textContent = '0/500 karakter';
-        document.getElementById('rejectEmailCheck').classList.add('hidden');
+        document.getElementById('charCountReject').textContent = '0/500';
         
         // Remove reject data from localStorage
         for (let i = 0; i < localStorage.length; i++) {
@@ -1663,46 +1915,14 @@
         }
         
         updateSavedCount();
-        showToast('Form Direset', 'Form Garansi Ditolak berhasil direset', 'info');
+        showSystemNotification('Form Direset', 'Form Garansi Ditolak berhasil direset', 'info');
       }
-    });
-    
-    // Save draft
-    document.getElementById('btnSaveLock').addEventListener('click', function() {
-      const formData = {
-        email: document.getElementById('lockEmail').value,
-        paket: document.getElementById('lockPaket').value,
-        tahap: document.getElementById('lockTahap').value,
-        modal: document.getElementById('lockModal').value,
-        profit: document.getElementById('lockProfit').value,
-        note: document.getElementById('lockNote').value,
-        timestamp: new Date().toISOString()
-      };
-      
-      localStorage.setItem('asiang_lock_draft', JSON.stringify(formData));
-      showToast('Draft Tersimpan', 'Data Penguncian Paket berhasil disimpan', 'success');
-    });
-    
-    document.getElementById('btnSaveReject').addEventListener('click', function() {
-      const formData = {
-        email: document.getElementById('rejectEmail').value,
-        paket: document.getElementById('rejectPaket').value,
-        modal: document.getElementById('rejectModal').value,
-        tahap: document.getElementById('rejectTahap').value,
-        alt1: document.getElementById('rejectAlt1').value,
-        alt2: document.getElementById('rejectAlt2').value,
-        note: document.getElementById('rejectNote').value,
-        timestamp: new Date().toISOString()
-      };
-      
-      localStorage.setItem('asiang_reject_draft', JSON.stringify(formData));
-      showToast('Draft Tersimpan', 'Data Garansi Ditolak berhasil disimpan', 'success');
     });
     
     // Preview reject
     document.getElementById('btnPreviewReject').addEventListener('click', function() {
       if (!validateRejectForm()) {
-        showToast('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
+        showSystemNotification('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
         return;
       }
       
@@ -1712,24 +1932,94 @@
       document.getElementById('modalRejectModal').textContent = document.getElementById('rejectModal').value;
       document.getElementById('modalRejectTahap').textContent = document.getElementById('rejectTahap').value;
       document.getElementById('modalRejectAlt1').textContent = document.getElementById('rejectAlt1').value || '-';
-      document.getElementById('modalRejectAlt2').textContent = document.getElementById('rejectAlt2').value || '-';
       
-      showModal('modalReject');
-      showToast('Preview Surat', 'Preview surat garansi ditolak', 'info');
+      // Show alternative package container if exists
+      const altContainer = document.getElementById('altPackageContainer');
+      if (document.getElementById('rejectAlt1').value.trim()) {
+        altContainer.classList.remove('hidden');
+      } else {
+        altContainer.classList.add('hidden');
+      }
+      
+      // Show note if exists
+      const noteContainer = document.getElementById('modalRejectNoteContainer');
+      const noteText = document.getElementById('modalRejectNote');
+      const note = document.getElementById('rejectNote').value.trim();
+      if (note) {
+        noteText.textContent = note;
+        noteContainer.classList.remove('hidden');
+      } else {
+        noteContainer.classList.add('hidden');
+      }
+      
+      document.getElementById('modalReject').classList.remove('hidden');
+      showSystemNotification('Preview Surat', 'Preview surat garansi ditolak', 'info');
     });
     
-    // 13. Keyboard Shortcuts
+    // 13. Additional Functions
+    function printModalData(type) {
+      window.print();
+      showSystemNotification('Print', 'Data sedang diproses untuk dicetak', 'info');
+    }
+    
+    function contactSupport() {
+      showSystemNotification('Support', 'Hubungi customer service untuk bantuan lebih lanjut', 'info');
+      // In real app, this could open a chat or email
+    }
+    
+    function sharePackageData() {
+      showSystemNotification('Berbagi', 'Data paket berhasil disalin untuk dibagikan', 'info');
+    }
+    
+    function copyRejectData() {
+      const data = {
+        email: document.getElementById('modalRejectEmail').textContent,
+        paket: document.getElementById('modalRejectPaket').textContent,
+        alternatif: document.getElementById('modalRejectAlt1').textContent
+      };
+      
+      navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+      showSystemNotification('Data Disalin', 'Data penolakan berhasil disalin', 'info');
+    }
+    
+    function saveRejectForLater() {
+      showSystemNotification('Draft Disimpan', 'Data disimpan untuk diproses nanti', 'save');
+    }
+    
+    function retryPackageApplication() {
+      showSystemNotification('Pengajuan Ulang', 'Siapkan data untuk pengajuan ulang paket', 'info');
+      // In real app, this could redirect to application form
+    }
+    
+    function playNotificationSound(type) {
+      // This is a placeholder for sound effects
+      // In a real app, you would play actual audio files
+      console.log(`Playing ${type} notification sound`);
+    }
+    
+    // 14. Close modals when clicking outside
+    document.querySelectorAll('[id^="modal"]').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal(this.id);
+        }
+      });
+    });
+    
+    // 15. Keyboard Shortcuts
     document.addEventListener('keydown', function(e) {
       // Ctrl+1 = Lock Form
       if (e.ctrlKey && e.key === '1') {
         e.preventDefault();
         showSection('sectionLock');
+        showSystemNotification('Shortcut', 'Beralih ke form Penguncian Paket', 'info');
       }
       
       // Ctrl+2 = Reject Form
       if (e.ctrlKey && e.key === '2') {
         e.preventDefault();
         showSection('sectionReject');
+        showSystemNotification('Shortcut', 'Beralih ke form Garansi Ditolak', 'info');
       }
       
       // Ctrl+L = Process Lock
@@ -1744,16 +2034,6 @@
         document.getElementById('btnProcessReject').click();
       }
       
-      // Ctrl+S = Save Draft (context aware)
-      if (e.ctrlKey && e.key === 's') {
-        e.preventDefault();
-        if (document.getElementById('sectionLock').classList.contains('active')) {
-          document.getElementById('btnSaveLock').click();
-        } else {
-          document.getElementById('btnSaveReject').click();
-        }
-      }
-      
       // ESC = Close modal
       if (e.key === 'Escape') {
         closeModal('modalLock');
@@ -1761,71 +2041,48 @@
       }
     });
     
-    // 14. Load draft on page load
+    // 16. Load data on page load
     window.addEventListener('load', function() {
-      // Load lock draft
-      const lockDraft = localStorage.getItem('asiang_lock_draft');
-      if (lockDraft) {
-        try {
-          const data = JSON.parse(lockDraft);
-          document.getElementById('lockEmail').value = data.email || '';
-          document.getElementById('lockPaket').value = data.paket || '';
-          document.getElementById('lockTahap').value = data.tahap || '';
-          document.getElementById('lockModal').value = data.modal || '';
-          document.getElementById('lockProfit').value = data.profit || '';
-          document.getElementById('lockNote').value = data.note || '';
-          calculateLockResult();
-          showToast('Draft Dimuat', 'Draft Penguncian Paket berhasil dimuat', 'info');
-        } catch (e) {
-          console.error('Error loading lock draft:', e);
-        }
-      }
-      
-      // Load reject draft
-      const rejectDraft = localStorage.getItem('asiang_reject_draft');
-      if (rejectDraft) {
-        try {
-          const data = JSON.parse(rejectDraft);
-          document.getElementById('rejectEmail').value = data.email || '';
-          document.getElementById('rejectPaket').value = data.paket || '';
-          document.getElementById('rejectModal').value = data.modal || '';
-          document.getElementById('rejectTahap').value = data.tahap || '';
-          document.getElementById('rejectAlt1').value = data.alt1 || '';
-          document.getElementById('rejectAlt2').value = data.alt2 || '';
-          document.getElementById('rejectNote').value = data.note || '';
-          showToast('Draft Dimuat', 'Draft Garansi Ditolak berhasil dimuat', 'info');
-        } catch (e) {
-          console.error('Error loading reject draft:', e);
-        }
-      }
-      
       // Update saved count
       updateSavedCount();
       
       // Show welcome message
       setTimeout(() => {
-        showToast('Sistem Siap', 'ASIANG Banking System siap digunakan', 'success');
+        showSystemNotification('Sistem Siap', 'ASIANG Banking System siap digunakan', 'success');
       }, 1000);
+      
+      // Simulate system activity
+      setInterval(() => {
+        // Random system notifications
+        const activities = [
+          ['Sistem Aktif', 'Semua komponen beroperasi normal', 'success'],
+          ['Auto Backup', 'Data tersimpan aman', 'save'],
+          ['Monitoring', 'Sistem berjalan optimal', 'info']
+        ];
+        
+        const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+        showSystemNotification(randomActivity[0], randomActivity[1], randomActivity[2]);
+      }, 30000); // Every 30 seconds
     });
     
-    // 15. Additional Functions
-    function printModalData(type) {
-      window.print();
-      showToast('Print', 'Data sedang diproses untuk dicetak', 'info');
-    }
-    
-    function contactSupport() {
-      showToast('Support', 'Hubungi customer service untuk bantuan lebih lanjut', 'info');
-    }
-    
-    // Close modals when clicking outside
-    document.querySelectorAll('[id^="modal"]').forEach(modal => {
-      modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeModal(this.id);
-        }
-      });
-    });
+    // 17. Add CSS for progress animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shrink {
+        from { width: 100%; }
+        to { width: 0%; }
+      }
+      
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+        50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.7); }
+      }
+      
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>

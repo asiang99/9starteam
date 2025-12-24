@@ -225,62 +225,15 @@
       max-width: 350px;
     }
 
-    /* Compact modal layout */
-    .modal-compact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-height: 50vh;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-
-    .modal-compact-grid::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .modal-compact-grid::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 3px;
-    }
-
-    .modal-compact-grid::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
-      border-radius: 3px;
-    }
-
-    .modal-compact-grid::-webkit-scrollbar-thumb:hover {
-      background: #a1a1a1;
-    }
-
     /* Wide modal for horizontal expansion */
     .modal-wide-content {
-      max-width: 1200px;
+      max-width: 1400px;
       width: 95%;
     }
 
     .modal-wide-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .modal-compact-section {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-
-    /* Fixed height for modal content */
-    .modal-content-fixed {
-      max-height: 450px;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-
-    /* Compact form layout */
-    .compact-form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
       gap: 15px;
     }
   </style>
@@ -981,7 +934,7 @@
             </div>
             <div class="flex items-center gap-4">
               <div class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-sm">
-                <i class="ri-time-line mr-2"></i>${new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'})}
+                <i class="ri-time-line mr-2"></i><span id="modalLockTime">--:--</span>
               </div>
               <button onclick="closeModal('modalLock')" class="w-12 h-12 rounded-2xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all">
                 <i class="ri-close-line text-xl"></i>
@@ -1037,7 +990,7 @@
                 </div>
                 <div class="pt-3 border-t border-slate-200">
                   <p class="text-xs text-slate-500 mb-1">Waktu Proses</p>
-                  <p class="font-semibold text-slate-900">${new Date().toLocaleString('id-ID')}</p>
+                  <p id="modalLockProcessTime" class="font-semibold text-slate-900">-</p>
                 </div>
               </div>
             </div>
@@ -1213,7 +1166,7 @@
             </div>
             <div class="flex items-center gap-4">
               <div class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-sm">
-                <i class="ri-time-line mr-2"></i>${new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'})}
+                <i class="ri-time-line mr-2"></i><span id="modalRejectTime">--:--</span>
               </div>
               <button onclick="closeModal('modalReject')" class="w-12 h-12 rounded-2xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all">
                 <i class="ri-close-line text-xl"></i>
@@ -1269,7 +1222,7 @@
                 </div>
                 <div class="pt-3 border-t border-slate-200">
                   <p class="text-xs text-slate-500 mb-1">Waktu Pengajuan</p>
-                  <p class="font-semibold text-slate-900">${new Date().toLocaleString('id-ID')}</p>
+                  <p id="modalRejectSubmitTime" class="font-semibold text-slate-900">-</p>
                 </div>
               </div>
             </div>
@@ -1528,7 +1481,7 @@
       return re.test(email);
     }
     
-    // 7. Process Lock Form
+    // 7. Process Lock Form - DIPERBAIKI
     document.getElementById('btnProcessLock').addEventListener('click', function() {
       // Validation
       if (!validateLockForm()) {
@@ -1548,15 +1501,19 @@
       };
       
       // Update modal content with current time
-      const currentTime = new Date().toLocaleString('id-ID');
+      const currentTime = new Date();
       
-      // Populate modal
+      // Populate modal - PERBAIKAN: Tambahkan update waktu
       document.getElementById('modalLockEmail').textContent = formData.email;
       document.getElementById('modalLockPaket').textContent = formData.paket;
       document.getElementById('modalLockTahap').textContent = formData.tahap;
       document.getElementById('modalLockModal').textContent = formData.modal;
       document.getElementById('modalLockProfit').textContent = `${formData.profit}%`;
       document.getElementById('modalLockHasil').textContent = formData.hasil;
+      
+      // Update waktu di modal
+      document.getElementById('modalLockTime').textContent = currentTime.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('modalLockProcessTime').textContent = currentTime.toLocaleString('id-ID');
       
       // Show note if exists
       const noteContainer = document.getElementById('modalLockNoteContainer');
@@ -1605,7 +1562,7 @@
       return isValid;
     }
     
-    // 8. Process Reject Form
+    // 8. Process Reject Form - DIPERBAIKI
     document.getElementById('btnProcessReject').addEventListener('click', function() {
       // Validation
       if (!validateRejectForm()) {
@@ -1623,12 +1580,19 @@
         note: document.getElementById('rejectNote').value
       };
       
-      // Populate modal
+      // Update modal content with current time
+      const currentTime = new Date();
+      
+      // Populate modal - PERBAIKAN: Tambahkan update waktu
       document.getElementById('modalRejectEmail').textContent = formData.email;
       document.getElementById('modalRejectPaket').textContent = formData.paket;
       document.getElementById('modalRejectModal').textContent = formData.modal;
       document.getElementById('modalRejectTahap').textContent = formData.tahap;
       document.getElementById('modalRejectAlt1').textContent = formData.alt1 || '-';
+      
+      // Update waktu di modal
+      document.getElementById('modalRejectTime').textContent = currentTime.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('modalRejectSubmitTime').textContent = currentTime.toLocaleString('id-ID');
       
       // Show alternative package container if exists
       const altContainer = document.getElementById('altPackageContainer');
@@ -1772,6 +1736,8 @@
       
       notification.className += ` ${config.bg} ${config.border}`;
       
+      const currentTime = new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'});
+      
       notification.innerHTML = `
         <div class="flex items-start gap-4">
           <div class="flex-shrink-0">
@@ -1786,7 +1752,7 @@
             </div>
             <p class="text-slate-700 text-sm">${message}</p>
             <div class="mt-3 flex items-center justify-between">
-              <span class="text-xs text-slate-500">${new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'})}</span>
+              <span class="text-xs text-slate-500">${currentTime}</span>
               <div class="w-32 h-1 bg-slate-200 rounded-full overflow-hidden">
                 <div class="h-full ${type === 'success' ? 'bg-emerald-500' : type === 'error' ? 'bg-rose-500' : 'bg-blue-500'} animate-[shrink_5s_linear_forwards]"></div>
               </div>
@@ -1877,12 +1843,15 @@
       }
     });
     
-    // Preview reject
+    // Preview reject - DIPERBAIKI
     document.getElementById('btnPreviewReject').addEventListener('click', function() {
       if (!validateRejectForm()) {
         showSystemNotification('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
         return;
       }
+      
+      // Update modal content with current time
+      const currentTime = new Date();
       
       // Populate modal
       document.getElementById('modalRejectEmail').textContent = document.getElementById('rejectEmail').value;
@@ -1890,6 +1859,10 @@
       document.getElementById('modalRejectModal').textContent = document.getElementById('rejectModal').value;
       document.getElementById('modalRejectTahap').textContent = document.getElementById('rejectTahap').value;
       document.getElementById('modalRejectAlt1').textContent = document.getElementById('rejectAlt1').value || '-';
+      
+      // Update waktu di modal
+      document.getElementById('modalRejectTime').textContent = currentTime.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('modalRejectSubmitTime').textContent = currentTime.toLocaleString('id-ID');
       
       // Show alternative package container if exists
       const altContainer = document.getElementById('altPackageContainer');
@@ -1922,12 +1895,10 @@
     
     function contactSupport() {
       showSystemNotification('Support', 'Hubungi customer service untuk bantuan lebih lanjut', 'info');
-      // In real app, this could open a chat or email
     }
     
     function retryPackageApplication() {
       showSystemNotification('Pengajuan Ulang', 'Siapkan data untuk pengajuan ulang paket', 'info');
-      // In real app, this could redirect to application form
     }
     
     // 14. Close modals when clicking outside
@@ -2007,8 +1978,8 @@
       }
       
       @keyframes pulseGlow {
-        0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
-        50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.7); }
+        0%, 100% { boxShadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+        50% { boxShadow: 0 0 40px rgba(16, 185, 129, 0.7); }
       }
     `;
     document.head.appendChild(style);

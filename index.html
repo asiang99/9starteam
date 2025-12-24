@@ -661,7 +661,7 @@
         </div>
       </section>
       
-      <!-- ===== FORM GARANSI DITOLAK ===== -->
+      <!-- ===== FORM GARANSI DITOLAK (DIPERBAIKI: TAMBAH PAKET TERSEDIA KEDUA) ===== -->
       <section id="sectionReject" class="page-enter hidden">
         <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200">
           <!-- Form Header -->
@@ -763,15 +763,15 @@
               
               <!-- Right Column -->
               <div class="space-y-6">
-                <!-- Paket Tersedia -->
+                <!-- Paket Tersedia 1 (Wajib) -->
                 <div class="group">
                   <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
                       <i class="ri-checkbox-circle-line text-white text-sm"></i>
                     </div>
-                    <span>Pilih Paket Tersedia yang Masih Tersedia dalam Sistem <span class="text-rose-500">*</span></span>
+                    <span>Paket Tersedia 1 <span class="text-rose-500">*</span></span>
                   </label>
-                  <select id="rejectTahap" class="input-enhanced w-full p-4 rounded-xl appearance-none">
+                  <select id="rejectTahap1" class="input-enhanced w-full p-4 rounded-xl appearance-none">
                     <option value="">Pilih Paket Tersedia</option>
                     <option>Paket 1</option>
                     <option>Paket 2</option>
@@ -779,6 +779,26 @@
                     <option>Paket 4</option>
                     <option>Paket 5</option>
                   </select>
+                  <p class="text-xs text-slate-500 mt-2">Pilih paket tersedia yang masih tersedia dalam sistem</p>
+                </div>
+                
+                <!-- Paket Tersedia 2 (Opsional) -->
+                <div class="group">
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <i class="ri-checkbox-circle-line text-white text-sm"></i>
+                    </div>
+                    <span>Paket Tersedia 2 (Opsional)</span>
+                  </label>
+                  <select id="rejectTahap2" class="input-enhanced w-full p-4 rounded-xl appearance-none">
+                    <option value="">Pilih Paket Tersedia Lainnya</option>
+                    <option>Paket 1</option>
+                    <option>Paket 2</option>
+                    <option>Paket 3</option>
+                    <option>Paket 4</option>
+                    <option>Paket 5</option>
+                  </select>
+                  <p class="text-xs text-slate-500 mt-2">Opsional: Pilih paket tersedia tambahan</p>
                 </div>
                 
                 <!-- Paket Alternatif -->
@@ -787,7 +807,7 @@
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
                       <i class="ri-arrow-right-circle-line text-white text-sm"></i>
                     </div>
-                    <span>Paket Alternatif</span>
+                    <span>Paket Alternatif (Opsional)</span>
                   </label>
                   <select id="rejectAlt1" class="input-enhanced w-full p-4 rounded-xl appearance-none">
                     <option value="">Pilih Paket Alternatif</option>
@@ -797,28 +817,29 @@
                     <option>Paket 4</option>
                     <option>Paket 5</option>
                   </select>
+                  <p class="text-xs text-slate-500 mt-2">Opsional: Pilih paket alternatif rekomendasi</p>
                 </div>
-                
-                <!-- Catatan Penolakan -->
-                <div class="group">
-                  <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
-                      <i class="ri-alert-line text-white text-sm"></i>
-                    </div>
-                    <span>Catatan Penolakan (Opsional)</span>
-                  </label>
-                  <textarea 
-                    id="rejectNote"
-                    rows="3" 
-                    class="input-enhanced w-full p-4 rounded-xl"
-                    placeholder="Alasan penolakan dan rekomendasi..."
-                    maxlength="500"
-                  ></textarea>
-                  <div class="flex justify-between text-xs text-slate-500 mt-2">
-                    <span>Catatan aktif dan akan dikirim ke nasabah</span>
-                    <span id="charCountReject">0/500</span>
-                  </div>
+              </div>
+            </div>
+            
+            <!-- Catatan Penolakan -->
+            <div class="mt-8">
+              <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
+                  <i class="ri-alert-line text-white text-sm"></i>
                 </div>
+                <span>Catatan Penolakan (Opsional)</span>
+              </label>
+              <textarea 
+                id="rejectNote"
+                rows="3" 
+                class="input-enhanced w-full p-4 rounded-xl"
+                placeholder="Alasan penolakan dan rekomendasi..."
+                maxlength="500"
+              ></textarea>
+              <div class="flex justify-between text-xs text-slate-500 mt-2">
+                <span>Catatan aktif dan akan dikirim ke nasabah</span>
+                <span id="charCountReject">0/500</span>
               </div>
             </div>
             
@@ -914,7 +935,7 @@
     </main>
   </div>
 
-  <!-- ===== MODAL PENGUNCIAN PAKET (DIPERBAIKI UKURAN) ===== -->
+  <!-- ===== MODAL PENGUNCIAN PAKET ===== -->
   <div id="modalLock" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm modal-overlay"></div>
     <div class="relative flex items-center justify-center min-h-screen p-6">
@@ -1146,7 +1167,7 @@
     </div>
   </div>
 
-  <!-- ===== MODAL GARANSI DITOLAK (DIPERBAIKI UKURAN) ===== -->
+  <!-- ===== MODAL GARANSI DITOLAK (DIPERBAIKI: TAMBAH PAKET TERSEDIA KEDUA) ===== -->
   <div id="modalReject" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm modal-overlay"></div>
     <div class="relative flex items-center justify-center min-h-screen p-6">
@@ -1202,8 +1223,8 @@
         
         <!-- Modal Content (Horizontal Layout) -->
         <div class="p-8">
-          <!-- Grid 4 Kolom untuk Detail Penolakan -->
-          <div class="modal-wide-grid mb-8">
+          <!-- Grid 5 Kolom untuk Detail Penolakan (ditambah 1 kolom untuk paket tersedia kedua) -->
+          <div class="grid grid-cols-5 gap-6 mb-8">
             <!-- Kolom 1: Data Nasabah -->
             <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
               <div class="flex items-center gap-3 mb-4">
@@ -1250,7 +1271,7 @@
               </div>
             </div>
             
-            <!-- Kolom 3: Paket Tersedia -->
+            <!-- Kolom 3: Paket Tersedia 1 -->
             <div class="bg-emerald-50 rounded-2xl p-6 border-2 border-emerald-300 package-success">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -1258,7 +1279,7 @@
                     <i class="ri-checkbox-circle-line text-white text-sm"></i>
                   </div>
                   <div>
-                    <h4 class="font-bold text-emerald-900">Paket Tersedia</h4>
+                    <h4 class="font-bold text-emerald-900">Paket Tersedia 1</h4>
                     <p class="text-xs text-emerald-600">Masih tersedia di sistem</p>
                   </div>
                 </div>
@@ -1268,7 +1289,7 @@
               </div>
               <div class="space-y-3">
                 <div>
-                  <p id="modalRejectTahap" class="font-bold text-emerald-800 text-lg">-</p>
+                  <p id="modalRejectTahap1" class="font-bold text-emerald-800 text-lg">-</p>
                 </div>
                 <div class="flex items-center gap-2">
                   <i class="ri-information-line text-emerald-500 text-sm"></i>
@@ -1277,7 +1298,34 @@
               </div>
             </div>
             
-            <!-- Kolom 4: Paket Alternatif -->
+            <!-- Kolom 4: Paket Tersedia 2 -->
+            <div id="tahap2PackageContainer" class="bg-emerald-50 rounded-2xl p-6 border-2 border-emerald-300 package-success hidden">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                    <i class="ri-checkbox-circle-line text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-emerald-900">Paket Tersedia 2</h4>
+                    <p class="text-xs text-emerald-600">Opsional tambahan</p>
+                  </div>
+                </div>
+                <div class="px-3 py-1 bg-emerald-500 text-white text-xs rounded-full font-semibold">
+                  <i class="ri-check-double-line mr-1"></i>TERSEDIA
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div>
+                  <p id="modalRejectTahap2" class="font-bold text-emerald-800 text-lg">-</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="ri-information-line text-emerald-500 text-sm"></i>
+                  <span class="text-xs text-emerald-600">Paket opsional tambahan</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Kolom 5: Paket Alternatif -->
             <div id="altPackageContainer" class="bg-blue-50 rounded-2xl p-6 border-2 border-blue-300 package-success hidden">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -1562,7 +1610,7 @@
       return isValid;
     }
     
-    // 8. Process Reject Form - DIPERBAIKI
+    // 8. Process Reject Form - DIPERBAIKI DENGAN PAKET TERSEDIA KEDUA
     document.getElementById('btnProcessReject').addEventListener('click', function() {
       // Validation
       if (!validateRejectForm()) {
@@ -1570,12 +1618,13 @@
         return;
       }
       
-      // Collect data
+      // Collect data - TAMBAH PAKET TERSEDIA KEDUA
       const formData = {
         email: document.getElementById('rejectEmail').value,
         paket: document.getElementById('rejectPaket').value,
         modal: document.getElementById('rejectModal').value,
-        tahap: document.getElementById('rejectTahap').value,
+        tahap1: document.getElementById('rejectTahap1').value,
+        tahap2: document.getElementById('rejectTahap2').value,
         alt1: document.getElementById('rejectAlt1').value,
         note: document.getElementById('rejectNote').value
       };
@@ -1583,20 +1632,31 @@
       // Update modal content with current time
       const currentTime = new Date();
       
-      // Populate modal - PERBAIKAN: Tambahkan update waktu
+      // Populate modal - PERBAIKAN: Tambahkan update waktu dan paket tersedia kedua
       document.getElementById('modalRejectEmail').textContent = formData.email;
       document.getElementById('modalRejectPaket').textContent = formData.paket;
       document.getElementById('modalRejectModal').textContent = formData.modal;
-      document.getElementById('modalRejectTahap').textContent = formData.tahap;
+      document.getElementById('modalRejectTahap1').textContent = formData.tahap1;
+      document.getElementById('modalRejectTahap2').textContent = formData.tahap2 || '-';
       document.getElementById('modalRejectAlt1').textContent = formData.alt1 || '-';
       
       // Update waktu di modal
       document.getElementById('modalRejectTime').textContent = currentTime.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
       document.getElementById('modalRejectSubmitTime').textContent = currentTime.toLocaleString('id-ID');
       
-      // Show alternative package container if exists
+      // Show package containers based on data
+      const tahap2Container = document.getElementById('tahap2PackageContainer');
       const altContainer = document.getElementById('altPackageContainer');
-      if (formData.alt1 && formData.alt1.trim()) {
+      
+      // Show tahap 2 container if exists
+      if (formData.tahap2 && formData.tahap2.trim() && formData.tahap2 !== '') {
+        tahap2Container.classList.remove('hidden');
+      } else {
+        tahap2Container.classList.add('hidden');
+      }
+      
+      // Show alternative package container if exists
+      if (formData.alt1 && formData.alt1.trim() && formData.alt1 !== '') {
         altContainer.classList.remove('hidden');
       } else {
         altContainer.classList.add('hidden');
@@ -1624,7 +1684,7 @@
     
     function validateRejectForm() {
       const fields = [
-        'rejectEmail', 'rejectPaket', 'rejectModal', 'rejectTahap'
+        'rejectEmail', 'rejectPaket', 'rejectModal', 'rejectTahap1'
       ];
       
       let isValid = true;
@@ -1649,7 +1709,62 @@
       return isValid;
     }
     
-    // 9. Data Management
+    // 9. Preview Reject Form - DIPERBAIKI DENGAN PAKET TERSEDIA KEDUA
+    document.getElementById('btnPreviewReject').addEventListener('click', function() {
+      if (!validateRejectForm()) {
+        showSystemNotification('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
+        return;
+      }
+      
+      // Update modal content with current time
+      const currentTime = new Date();
+      
+      // Populate modal
+      document.getElementById('modalRejectEmail').textContent = document.getElementById('rejectEmail').value;
+      document.getElementById('modalRejectPaket').textContent = document.getElementById('rejectPaket').value;
+      document.getElementById('modalRejectModal').textContent = document.getElementById('rejectModal').value;
+      document.getElementById('modalRejectTahap1').textContent = document.getElementById('rejectTahap1').value;
+      document.getElementById('modalRejectTahap2').textContent = document.getElementById('rejectTahap2').value || '-';
+      document.getElementById('modalRejectAlt1').textContent = document.getElementById('rejectAlt1').value || '-';
+      
+      // Update waktu di modal
+      document.getElementById('modalRejectTime').textContent = currentTime.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('modalRejectSubmitTime').textContent = currentTime.toLocaleString('id-ID');
+      
+      // Show package containers based on data
+      const tahap2Container = document.getElementById('tahap2PackageContainer');
+      const altContainer = document.getElementById('altPackageContainer');
+      
+      // Show tahap 2 container if exists
+      if (document.getElementById('rejectTahap2').value.trim() && document.getElementById('rejectTahap2').value !== '') {
+        tahap2Container.classList.remove('hidden');
+      } else {
+        tahap2Container.classList.add('hidden');
+      }
+      
+      // Show alternative package container if exists
+      if (document.getElementById('rejectAlt1').value.trim() && document.getElementById('rejectAlt1').value !== '') {
+        altContainer.classList.remove('hidden');
+      } else {
+        altContainer.classList.add('hidden');
+      }
+      
+      // Show note if exists
+      const noteContainer = document.getElementById('modalRejectNoteContainer');
+      const noteText = document.getElementById('modalRejectNote');
+      const note = document.getElementById('rejectNote').value.trim();
+      if (note) {
+        noteText.textContent = note;
+        noteContainer.classList.remove('hidden');
+      } else {
+        noteContainer.classList.add('hidden');
+      }
+      
+      document.getElementById('modalReject').classList.remove('hidden');
+      showSystemNotification('Preview Surat', 'Preview surat garansi ditolak', 'info');
+    });
+    
+    // 10. Data Management
     function saveData(type, data) {
       const key = `asiang_${type}_${Date.now()}`;
       const dataWithMeta = {
@@ -1675,7 +1790,7 @@
       document.getElementById('savedCount').textContent = count;
     }
     
-    // 10. Utility Functions
+    // 11. Utility Functions
     function formatRupiah(angka) {
       return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
@@ -1686,7 +1801,7 @@
       showSystemNotification('Modal Ditutup', 'Panel berhasil ditutup', 'info');
     }
     
-    // 11. Enhanced System Notification System
+    // 12. Enhanced System Notification System
     function showSystemNotification(title, message, type = 'info') {
       const notificationSystem = document.getElementById('notificationSystem');
       
@@ -1787,7 +1902,7 @@
       });
     }
     
-    // 12. Button Event Listeners
+    // 13. Button Event Listeners
     
     // Copy hasil
     document.getElementById('btnCopyLock').addEventListener('click', function() {
@@ -1826,7 +1941,8 @@
         document.getElementById('rejectEmail').value = '';
         document.getElementById('rejectPaket').value = '';
         document.getElementById('rejectModal').value = '';
-        document.getElementById('rejectTahap').value = '';
+        document.getElementById('rejectTahap1').value = '';
+        document.getElementById('rejectTahap2').value = '';
         document.getElementById('rejectAlt1').value = '';
         document.getElementById('rejectNote').value = '';
         document.getElementById('charCountReject').textContent = '0/500';
@@ -1843,51 +1959,7 @@
       }
     });
     
-    // Preview reject - DIPERBAIKI
-    document.getElementById('btnPreviewReject').addEventListener('click', function() {
-      if (!validateRejectForm()) {
-        showSystemNotification('Validasi Gagal', 'Harap lengkapi semua field yang wajib diisi', 'error');
-        return;
-      }
-      
-      // Update modal content with current time
-      const currentTime = new Date();
-      
-      // Populate modal
-      document.getElementById('modalRejectEmail').textContent = document.getElementById('rejectEmail').value;
-      document.getElementById('modalRejectPaket').textContent = document.getElementById('rejectPaket').value;
-      document.getElementById('modalRejectModal').textContent = document.getElementById('rejectModal').value;
-      document.getElementById('modalRejectTahap').textContent = document.getElementById('rejectTahap').value;
-      document.getElementById('modalRejectAlt1').textContent = document.getElementById('rejectAlt1').value || '-';
-      
-      // Update waktu di modal
-      document.getElementById('modalRejectTime').textContent = currentTime.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
-      document.getElementById('modalRejectSubmitTime').textContent = currentTime.toLocaleString('id-ID');
-      
-      // Show alternative package container if exists
-      const altContainer = document.getElementById('altPackageContainer');
-      if (document.getElementById('rejectAlt1').value.trim()) {
-        altContainer.classList.remove('hidden');
-      } else {
-        altContainer.classList.add('hidden');
-      }
-      
-      // Show note if exists
-      const noteContainer = document.getElementById('modalRejectNoteContainer');
-      const noteText = document.getElementById('modalRejectNote');
-      const note = document.getElementById('rejectNote').value.trim();
-      if (note) {
-        noteText.textContent = note;
-        noteContainer.classList.remove('hidden');
-      } else {
-        noteContainer.classList.add('hidden');
-      }
-      
-      document.getElementById('modalReject').classList.remove('hidden');
-      showSystemNotification('Preview Surat', 'Preview surat garansi ditolak', 'info');
-    });
-    
-    // 13. Additional Functions
+    // 14. Additional Functions
     function printModalData(type) {
       window.print();
       showSystemNotification('Print', 'Data sedang diproses untuk dicetak', 'info');
@@ -1901,7 +1973,7 @@
       showSystemNotification('Pengajuan Ulang', 'Siapkan data untuk pengajuan ulang paket', 'info');
     }
     
-    // 14. Close modals when clicking outside
+    // 15. Close modals when clicking outside
     document.querySelectorAll('[id^="modal"]').forEach(modal => {
       modal.addEventListener('click', function(e) {
         if (e.target === this) {
@@ -1910,7 +1982,7 @@
       });
     });
     
-    // 15. Keyboard Shortcuts
+    // 16. Keyboard Shortcuts
     document.addEventListener('keydown', function(e) {
       // Ctrl+1 = Lock Form
       if (e.ctrlKey && e.key === '1') {
@@ -1945,7 +2017,7 @@
       }
     });
     
-    // 16. Load data on page load
+    // 17. Load data on page load
     window.addEventListener('load', function() {
       // Update saved count
       updateSavedCount();
@@ -1969,7 +2041,7 @@
       }, 30000); // Every 30 seconds
     });
     
-    // 17. Add CSS for progress animation
+    // 18. Add CSS for progress animation
     const style = document.createElement('style');
     style.textContent = `
       @keyframes shrink {
